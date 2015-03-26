@@ -1,0 +1,15 @@
+connection: &connection
+  adapter: postgresql
+  encoding: unicode
+  host:     localhost
+  pool: 5
+  username: postgres
+  password: tarnawski
+
+development:
+  <<: *connection
+  database: projekt_development
+
+test: &test
+  <<: *connection
+  database: projekt_test
