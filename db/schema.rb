@@ -16,71 +16,84 @@ ActiveRecord::Schema.define(version: 20150330130641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "results", force: true do |t|
-    t.integer   "student_id"
-    t.integer   "points"
-    t.float     "mark"
-   
+  create_table "answers", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "question_id"
+    t.boolean "answer_a"
+    t.boolean "answer_b"
+    t.boolean "answer_c"
+    t.boolean "answer_d"
   end
 
-  create_table "students", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "index_number"
-    t.string   "group"
+  create_table "models", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "answers", force: true do |t|
-    t.integer  "student_id"
-    t.integer  "question_id"
-    t.boolean  "answer_a"
-    t.boolean  "answer_b"
-    t.boolean  "answer_c"
-    t.boolean  "answer_d"
+  add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
+  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "test_id"
+    t.text    "content"
+    t.string  "answer_a"
+    t.string  "answer_b"
+    t.string  "answer_c"
+    t.string  "answer_d"
+    t.string  "correct"
   end
 
-
-  create_table "questions", force: true do |t|
-    t.integer  "test_id"
-    t.text     "content"
-    t.string   "answer_a"
-    t.string   "answer_b"
-    t.string   "answer_c"
-    t.string   "answer_d"
-    t.string   "correct"
+  create_table "results", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "points"
+    t.float   "mark"
   end
 
-  create_table "tests", force: true do |t|
+  create_table "students", force: :cascade do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.integer "index_number"
+    t.string  "group"
+  end
+
+  create_table "tests", force: :cascade do |t|
     t.string   "name"
     t.boolean  "available"
     t.integer  "user_id"
     t.datetime "created_on"
     t.integer  "number_of_questions"
-    t.boolean  "random"			
-    t.integer  "time",			default: 0
-    t.boolean  "single_test"		
-    t.boolean  "standard_score"		
+    t.boolean  "random"
+    t.integer  "time",                default: 0
+    t.boolean  "single_test"
+    t.boolean  "standard_score"
     t.integer  "bdb"
     t.integer  "db"
-    t.integer  "dost"    
+    t.integer  "dost"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "firstname"
-    t.string   "lastname"
-    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
