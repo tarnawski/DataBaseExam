@@ -17,12 +17,14 @@ ActiveRecord::Schema.define(version: 20150330130641) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "question_id"
-    t.boolean "answer_a"
-    t.boolean "answer_b"
-    t.boolean "answer_c"
-    t.boolean "answer_d"
+    t.integer  "student_id"
+    t.integer  "question_id"
+    t.boolean  "answer_a"
+    t.boolean  "answer_b"
+    t.boolean  "answer_c"
+    t.boolean  "answer_d"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "models", force: :cascade do |t|
@@ -44,41 +46,48 @@ ActiveRecord::Schema.define(version: 20150330130641) do
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.integer "test_id"
-    t.text    "content"
-    t.string  "answer_a"
-    t.string  "answer_b"
-    t.string  "answer_c"
-    t.string  "answer_d"
-    t.string  "correct"
+    t.integer  "test_id"
+    t.text     "content"
+    t.text     "answer_a"
+    t.text     "answer_b"
+    t.text     "answer_c"
+    t.text     "answer_d"
+    t.integer  "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "results", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "points"
-    t.float   "mark"
+    t.integer  "student_id"
+    t.integer  "points"
+    t.float    "mark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.integer "index_number"
-    t.string  "group"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "index_number"
+    t.string   "group"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "tests", force: :cascade do |t|
     t.string   "name"
     t.boolean  "available"
     t.integer  "user_id"
-    t.datetime "created_on"
-    t.integer  "number_of_questions"
+    t.string   "number_of_questions"
     t.boolean  "random"
-    t.integer  "time",                default: 0
+    t.integer  "time"
     t.boolean  "single_test"
     t.boolean  "standard_score"
     t.integer  "bdb"
     t.integer  "db"
     t.integer  "dost"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "users", force: :cascade do |t|

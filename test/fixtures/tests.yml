@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  available: 
+  user_id: 1
+  number_of_questions: MyString
+  random: false
+  time: 1
+  single_test: false
+  standard_score: false
+  bdb: 1
+  db: 1
+  dost: 1
+
+two:
+  name: MyString
+  available: 
+  user_id: 1
+  number_of_questions: MyString
+  random: false
+  time: 1
+  single_test: false
+  standard_score: false
+  bdb: 1
+  db: 1
+  dost: 1

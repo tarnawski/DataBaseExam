@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @test.name %>
+</p>
+
+<p>
+  <strong>Available:</strong>
+  <%= @test.available %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @test.user_id %>
+</p>
+
+<p>
+  <strong>Number of questions:</strong>
+  <%= @test.number_of_questions %>
+</p>
+
+<p>
+  <strong>Random:</strong>
+  <%= @test.random %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @test.time %>
+</p>
+
+<p>
+  <strong>Single test:</strong>
+  <%= @test.single_test %>
+</p>
+
+<p>
+  <strong>Standard score:</strong>
+  <%= @test.standard_score %>
+</p>
+
+<p>
+  <strong>Bdb:</strong>
+  <%= @test.bdb %>
+</p>
+
+<p>
+  <strong>Db:</strong>
+  <%= @test.db %>
+</p>
+
+<p>
+  <strong>Dost:</strong>
+  <%= @test.dost %>
+</p>
+
+<%= link_to 'Edit', edit_test_path(@test) %> |
+<%= link_to 'Back', tests_path %>

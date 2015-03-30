@@ -1,0 +1,61 @@
+<%= form_for(@test) do |f| %>
+  <% if @test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+      <ul>
+      <% @test.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :available %><br>
+    <%= f.text_field :available %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :number_of_questions %><br>
+    <%= f.text_field :number_of_questions %>
+  </div>
+  <div class="field">
+    <%= f.label :random %><br>
+    <%= f.check_box :random %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br>
+    <%= f.number_field :time %>
+  </div>
+  <div class="field">
+    <%= f.label :single_test %><br>
+    <%= f.check_box :single_test %>
+  </div>
+  <div class="field">
+    <%= f.label :standard_score %><br>
+    <%= f.check_box :standard_score %>
+  </div>
+  <div class="field">
+    <%= f.label :bdb %><br>
+    <%= f.number_field :bdb %>
+  </div>
+  <div class="field">
+    <%= f.label :db %><br>
+    <%= f.number_field :db %>
+  </div>
+  <div class="field">
+    <%= f.label :dost %><br>
+    <%= f.number_field :dost %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

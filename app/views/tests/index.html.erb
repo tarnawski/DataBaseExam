@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Available</th>
+      <th>User</th>
+      <th>Number of questions</th>
+      <th>Random</th>
+      <th>Time</th>
+      <th>Single test</th>
+      <th>Standard score</th>
+      <th>Bdb</th>
+      <th>Db</th>
+      <th>Dost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tests.each do |test| %>
+      <tr>
+        <td><%= test.name %></td>
+        <td><%= test.available %></td>
+        <td><%= test.user_id %></td>
+        <td><%= test.number_of_questions %></td>
+        <td><%= test.random %></td>
+        <td><%= test.time %></td>
+        <td><%= test.single_test %></td>
+        <td><%= test.standard_score %></td>
+        <td><%= test.bdb %></td>
+        <td><%= test.db %></td>
+        <td><%= test.dost %></td>
+        <td><%= link_to 'Show', test %></td>
+        <td><%= link_to 'Edit', edit_test_path(test) %></td>
+        <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Test', new_test_path %>
