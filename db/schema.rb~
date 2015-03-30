@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 20150330130641) do
     t.integer  "user_id"
     t.datetime "created_on"
     t.integer  "number_of_questions"
-    t.boolean  "random"			
+    t.boolean  "random"			default: false
     t.integer  "time",			default: 0
-    t.boolean  "single_test"		
-    t.boolean  "standard_score"		
+    t.boolean  "single_test"		default: true
+    t.boolean  "standard_score"		default: true
     t.integer  "bdb"
     t.integer  "db"
     t.integer  "dost"    
