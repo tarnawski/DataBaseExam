@@ -2,7 +2,7 @@
 
 one:
   name: MyString
-  available: 
+  available: false
   user_id: 1
   number_of_questions: MyString
   random: false
@@ -10,12 +10,12 @@ one:
   single_test: false
   standard_score: false
   bdb: 1
-  db: 1
+  bd: 1
   dost: 1
 
 two:
   name: MyString
-  available: 
+  available: false
   user_id: 1
   number_of_questions: MyString
   random: false
@@ -23,5 +23,5 @@ two:
   single_test: false
   standard_score: false
   bdb: 1
-  db: 1
+  bd: 1
   dost: 1

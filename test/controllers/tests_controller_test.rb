@@ -18,7 +18,7 @@ class TestsControllerTest < ActionController::TestCase
 
   test "should create test" do
     assert_difference('Test.count') do
-      post :create, test: { available: @test.available, bdb: @test.bdb, db: @test.db, dost: @test.dost, name: @test.name, number_of_questions: @test.number_of_questions, random: @test.random, single_test: @test.single_test, standard_score: @test.standard_score, time: @test.time, user_id: @test.user_id }
+      post :create, test: { available: @test.available, bd: @test.bd, bdb: @test.bdb, dost: @test.dost, name: @test.name, number_of_questions: @test.number_of_questions, random: @test.random, single_test: @test.single_test, standard_score: @test.standard_score, time: @test.time, user_id: @test.user_id }
     end
 
     assert_redirected_to test_path(assigns(:test))
@@ -35,7 +35,7 @@ class TestsControllerTest < ActionController::TestCase
   end
 
   test "should update test" do
-    patch :update, id: @test, test: { available: @test.available, bdb: @test.bdb, db: @test.db, dost: @test.dost, name: @test.name, number_of_questions: @test.number_of_questions, random: @test.random, single_test: @test.single_test, standard_score: @test.standard_score, time: @test.time, user_id: @test.user_id }
+    patch :update, id: @test, test: { available: @test.available, bd: @test.bd, bdb: @test.bdb, dost: @test.dost, name: @test.name, number_of_questions: @test.number_of_questions, random: @test.random, single_test: @test.single_test, standard_score: @test.standard_score, time: @test.time, user_id: @test.user_id }
     assert_redirected_to test_path(assigns(:test))
   end
 

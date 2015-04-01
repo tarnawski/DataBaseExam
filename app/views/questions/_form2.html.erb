@@ -1,0 +1,34 @@
+<%= form_for[test, question] do |f| %>
+  
+  <div class="field">
+    <%= f.label :test_id %><br>
+    <%= f.collection_select :test_id, @tests, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :answer_a %><br>
+    <%= f.text_area :answer_a %>
+  </div>
+  <div class="field">
+    <%= f.label :answer_b %><br>
+    <%= f.text_area :answer_b %>
+  </div>
+  <div class="field">
+    <%= f.label :answer_c %><br>
+    <%= f.text_area :answer_c %>
+  </div>
+  <div class="field">
+    <%= f.label :answer_d %><br>
+    <%= f.text_area :answer_d %>
+  </div>
+  <div class="field">
+    <%= f.label :correct %><br>
+    <%= f.number_field :correct %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+
+  resources :tests
+
+  resources :questions
+
+  resources :answers
+
+  resources :results
+
   resources :students
 
   devise_for :users

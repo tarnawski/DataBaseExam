@@ -56,7 +56,7 @@
 </p>
 
 
-
+<%= render 'students/form' %>
 
 <%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %>

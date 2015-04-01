@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% questions.each do |question| %>
+    <% @questions.each do |question| %>
       <tr>
         <td><%= question.test_id %></td>
         <td><%= question.content %></td>

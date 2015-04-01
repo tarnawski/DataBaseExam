@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
 
-  resources :tests
-
-  resources :questions
-
+  resources :tests do
+   resources :questions
+end
   resources :answers
 
   resources :results

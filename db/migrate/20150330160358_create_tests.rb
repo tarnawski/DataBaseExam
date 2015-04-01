@@ -10,7 +10,7 @@ class CreateTests < ActiveRecord::Migration
       t.boolean :single_test
       t.boolean :standard_score
       t.integer :bdb
-      t.integer :db
+      t.integer :bd
       t.integer :dost
 
       t.timestamps null: false

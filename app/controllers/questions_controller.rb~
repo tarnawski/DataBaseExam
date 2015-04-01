@@ -1,35 +1,42 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  expose(:test)
-  expose(:questions)
-  expose(:question)
 
-
+  # GET /questions
+  # GET /questions.json
   def index
+    @questions = Question.all
   end
 
-
+  # GET /questions/1
+  # GET /questions/1.json
   def show
   end
 
-
+  # GET /questions/new
   def new
+    @question = Question.new
+    @tests = Test.order(:name)
   end
 
-
+  # GET /questions/1/edit
   def edit
+    @tests = Test.order(:name)
   end
 
-
+  # POST /questions
+  # POST /questions.json
   def create
+    @test = Test.find(1)	
+    @question = @test.questions.create(question_params)
 
-    self.question = Question.new(question_params)
-    if question.save
-      test.questions << question
-      redirect_to test_question_url(test, question), notice: 'Product was successfully created.'
+
+    if @question.save
+      
+      redirect_to @question, notice: 'Question was successfully updated.' 
     else
       render action: 'new'
     end
+
 end
   
  
