@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
     self.question = Question.new(question_params)
     if question.save
       test.questions << question
-      redirect_to test_question_url(test, question), notice: 'Product was successfully created.'
+      redirect_to test_question_url(test, question), notice: 'Question was successfully created.'
     else
       render action: 'new'
     end
@@ -34,37 +34,42 @@ end
   
  
 
-  # PATCH/PUT /questions/1
-  # PATCH/PUT /questions/1.json
   def update
-    respond_to do |format|
-      if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
-      else
-        format.html { render :edit }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
-    end
+
+ if user_signed_in?	
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+    redirect_to test_path(params[:test_id]), notice: "Question updated."
+    else
+     render action: 'edit'
+    end  
+ else
+redirect_to new_user_session_url
+end
   end
 
-  # DELETE /questions/1
-  # DELETE /questions/1.json
+
   def destroy
-    @question.destroy
-    respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    if user_signed_in?
+    question.destroy
+   redirect_to test_path(params[:test_id]), notice: 'Question was successfully destroyed.'
+
+else
+redirect_to new_user_session_url
+
+end
+
   end
+
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+
     def set_question
-      @question = Question.find(params[:id])
+      question = Question.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+
     def question_params
       params.require(:question).permit(:test_id, :content, :answer_a, :answer_b, :answer_c, :answer_d, :correct)
     end

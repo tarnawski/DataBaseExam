@@ -2,38 +2,38 @@
 
 <p>
   <strong>Test:</strong>
-  <%= @question.test_id %>
+  <%= question.test_id %>
 </p>
 
 <p>
   <strong>Content:</strong>
-  <%= @question.content %>
+  <%= question.content %>
 </p>
 
 <p>
   <strong>Answer a:</strong>
-  <%= @question.answer_a %>
+  <%= question.answer_a %>
 </p>
 
 <p>
   <strong>Answer b:</strong>
-  <%= @question.answer_b %>
+  <%= question.answer_b %>
 </p>
 
 <p>
   <strong>Answer c:</strong>
-  <%= @question.answer_c %>
+  <%= question.answer_c %>
 </p>
 
 <p>
   <strong>Answer d:</strong>
-  <%= @question.answer_d %>
+  <%= question.answer_d %>
 </p>
 
 <p>
   <strong>Correct:</strong>
-  <%= @question.correct %>
+  <%= question.correct %>
 </p>
 
-<%= link_to 'Edit', edit_test_question_path(1,1) %>
-<%= link_to 'Back', test_questions_path(:test_id) %>
+<%= link_to 'Edit', edit_test_question_path(question.test_id, question) %>
+<%= link_to 'Back',  test_path(:id =>test.id) %>

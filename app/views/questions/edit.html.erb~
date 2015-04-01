@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show',  test_question_path(question.test_id, question) %> |
-<%= link_to 'Back',  test_path(:id =>test.id) %>
+<%= link_to 'Back',  test_path(:id =>test.id %>
