@@ -36,4 +36,4 @@
 </p>
 
 <%= link_to 'Edit', edit_test_question_path(question.test_id, question) %>
-<%= link_to 'Back', test_questions_path %>
+<%= link_to 'Back',  test_path(:id =>test.id) %>

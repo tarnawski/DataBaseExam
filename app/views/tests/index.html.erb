@@ -2,12 +2,12 @@
 
 <h1>Listing Tests</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>User</th>
       <th>Name</th>
       <th>Available</th>
-      <th>User</th>
       <th>Number of questions</th>
       <th>Random</th>
       <th>Time</th>
@@ -23,9 +23,9 @@
   <tbody>
     <% @tests.each do |test| %>
       <tr>
+        <td><%= test.user_id %></td>
         <td><%= test.name %></td>
         <td><%= test.available %></td>
-        <td><%= test.user_id %></td>
         <td><%= test.number_of_questions %></td>
         <td><%= test.random %></td>
         <td><%= test.time %></td>

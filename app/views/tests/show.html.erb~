@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= test.user_id %>
+  <strong>Author:</strong>
+  <%= @author.email%>
 </p>
 
 <p>
@@ -61,7 +61,7 @@
 
 <h1>Listing Questions</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Test</th>
@@ -94,4 +94,4 @@
 </table>
 <br>
 <%= link_to 'New Questions', new_test_question_path(:test_id => test.id) %>
-
+<br><br>

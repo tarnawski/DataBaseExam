@@ -15,6 +15,7 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+
   end
 
   # GET /tests/new
@@ -30,6 +31,7 @@ class TestsController < ApplicationController
   # POST /tests.json
   def create
     @test = Test.new(test_params)
+    @test.user_id = current_user.id
 
     respond_to do |format|
       if @test.save

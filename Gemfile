@@ -7,6 +7,10 @@ gem 'decent_decoration'
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '>= 3.2'
+gem 'rspec-rails', '~> 3.0'
+#For RSpec  
+gem 'shoulda-matchers'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
