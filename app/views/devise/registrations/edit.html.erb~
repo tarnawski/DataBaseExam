@@ -5,12 +5,12 @@
 
     <div class="field">
     <%= f.label :firstname %><br />
-    <%= f.text_field :firstname, autofocus: true %>
+    <%= f.email_field :firstname, autofocus: true %>
   </div>
 
   <div class="field">
     <%= f.label :lastname %><br />
-    <%= f.text_field :lastname, autofocus: true %>
+    <%= f.email_field :lastname, autofocus: true %>
   </div>
 
   <div class="field">

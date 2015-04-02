@@ -1,0 +1,4 @@
+class AddFirstNameLastNameAndAdminForUser < ActiveRecord::Migration
+  def change
+  end
+end

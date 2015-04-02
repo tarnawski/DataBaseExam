@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :firstname %><br />
-    <%= f.text_field :firstname, autofocus: true %>
+    <%= f.firstname_field :firstname, autofocus: true %>
   </div>
 
   <div class="field">
