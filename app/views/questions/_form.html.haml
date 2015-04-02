@@ -27,8 +27,20 @@
     = f.text_area :answer_d, class: 'form-control'
 
   .form-group
-    = f.label :correct
-    = f.number_field :correct, class: 'form-control'
+    = f.label :a_is_correct
+    = f.check_box :a_is_correct, class: 'form-control'
+
+  .form-group
+    = f.label :b_is_correct
+    = f.check_box :b_is_correct, class: 'form-control'
+ 
+  .form-group
+    = f.label :c_is_correct
+    = f.check_box :c_is_correct, class: 'form-control'
+
+  .form-group
+    = f.label :d_is_correct
+    = f.check_box :d_is_correct, class: 'form-control'
 
 
   = f.submit

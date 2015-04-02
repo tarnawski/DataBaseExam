@@ -1,4 +1,5 @@
 class TestsController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :new, :edit, :update, :destroy, :create]
   before_action :set_test, only: [:show, :edit, :update, :destroy]
    
     expose(:tests)

@@ -27,8 +27,8 @@
     = f.text_area :answer_d, class: 'form-control'
 
   .form-group
-    = f.label :correct
-    = f.number_field :correct, class: 'form-control'
+    = f.label :a_is_correct
+    = f.check_box :a_is_correct, class: 'form-control'
 
 
-  = f.submit, class: 'btn btn-default'
+  = f.submit

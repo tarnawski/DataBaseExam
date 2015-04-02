@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <strong>Author:</strong>
-  <%= @author.email%>
+  <strong>User:</strong>
+  <%= test.user_id %>
 </p>
 
 <p>
@@ -84,7 +84,7 @@
         <td><%= question.answer_b %></td>
         <td><%= question.answer_c %></td>
         <td><%= question.answer_d %></td>
-        <td><%= question.correct %></td>
+        <td><%= question.a_is_correct %></td>
         <td><%= link_to 'Show', test_question_path(question.test_id, question)%></td>
         <td><%= link_to 'Edit', edit_test_question_path(question.test_id, question) %></td>
         <td><%= link_to 'Destroy', test_question_path(question.test_id, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>

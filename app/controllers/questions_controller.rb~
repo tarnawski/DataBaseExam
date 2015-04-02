@@ -52,7 +52,7 @@ end
   def destroy
     if user_signed_in?
     question.destroy
-    redirect_to test_url(question.test), notice: 'Question was successfully destroyed.'
+   redirect_to test_path(params[:test_id]), notice: 'Question was successfully destroyed.'
 
 else
 redirect_to new_user_session_url
@@ -71,6 +71,6 @@ end
 
 
     def question_params
-      params.require(:question).permit(:test_id, :content, :answer_a, :answer_b, :answer_c, :answer_d, :correct)
+      params.require(:question).permit(:test_id, :content, :answer_a, :answer_b, :answer_c, :answer_d, :a_is_correct, :b_is_correct, :c_is_correct, :d_is_correct)
     end
 end

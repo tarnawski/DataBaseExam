@@ -1,0 +1,18 @@
+require 'rails_helper'
+
+RSpec.describe Question, type: :model do
+   it { should validate_presence_of :content }
+   it { should validate_presence_of :answer_a }
+   it { should validate_presence_of :answer_b }
+   it { should validate_presence_of :answer_c }
+   it { should validate_presence_of :answer_d }
+
+ describe '#question' do
+      let(:question) { build(:question, a_is_correct: false, b_is_correct: false, c_is_correct: false, d_is_correct: false) }
+
+      it 'is limited to two decimal places' do
+        expect(question).to raise_error
+      end
+    end
+
+end

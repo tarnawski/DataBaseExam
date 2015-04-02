@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Questions details</h1>
 <p>
   <strong>Test:</strong>
   <%= question.test_id %>
@@ -32,7 +32,7 @@
 
 <p>
   <strong>Correct:</strong>
-  <%= question.correct %>
+  <%= question.a_is_correct %>
 </p>
 
 <%= link_to 'Edit', edit_test_question_path(question.test_id, question) %>

@@ -31,8 +31,23 @@
 </p>
 
 <p>
-  <strong>Correct:</strong>
-  <%= question.correct %>
+  <strong>A is correct:</strong>
+  <%= question.a_is_correct %>
+</p>
+
+<p>
+  <strong>B is correct:</strong>
+  <%= question.b_is_correct %>
+</p>
+
+<p>
+  <strong>C is correct:</strong>
+  <%= question.c_is_correct %>
+</p>
+
+<p>
+  <strong>D is correct:</strong>
+  <%= question.d_is_correct %>
 </p>
 
 <%= link_to 'Edit', edit_test_question_path(question.test_id, question) %>
