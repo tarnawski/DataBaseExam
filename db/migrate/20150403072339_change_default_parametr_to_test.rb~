@@ -1,0 +1,4 @@
+class ChangeDefaultParametrToTest < ActiveRecord::Migration
+  def change
+  end
+end
