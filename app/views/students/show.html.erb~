@@ -20,17 +20,16 @@
   <%= @student.group %>
 </p>
 
-
-
-
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
+<br><br>
 
 <p>
   <strong>Dostępne testy:</strong>
 <br>
 <% @tests.each do |test| %>
-  <%= test.name %>
+<%= link_to test.name, :action => "prepare_test", :selected_test => "nowy"%>
+  
 <br>
 <% end %>
 

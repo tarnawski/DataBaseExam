@@ -1,6 +1,33 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
+  def prepare_test
+    @students_test = Test.find(params[:selected_test]);
+    if @students_test.number_of_questions == 0
+    @students_questions = @students_test.questions
+    
+    elsif @students_test.number_of_questions != 0
+    @students_questions = @students_test.questions.first(@students_test.number_of_questions)
+    end
+   
+    @tab = []
+
+
+    @students_questions.each do |question| 
+    @tab << question.id
+    end
+
+
+    if @students_test.random == true
+    #This function shuffles (randomizes the order of the elements in) an array
+    @tab.shuffle!
+    end
+
+    session[:tab] = @tab
+
+  end
+
+
   # GET /students
   # GET /students.json
   def index
