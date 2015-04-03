@@ -12,7 +12,16 @@
     %nav.navbar.navbar-default
       .container-fluid
         .navbar-header
-          %span.navbar-brand by Tomasz Tarnawski
+          %span.navbar-brand
+            -if user_signed_in?
+              Witaj, 
+              = current_user.firstname
+              = current_user.lastname
+              (
+              = current_user.email
+              )
+            -else
+              Witaj, jesteś niezalogowany, jeśli nie masz konta zarejestruj się...
         %p.navbar-text.navbar-right
           
           -if user_signed_in?

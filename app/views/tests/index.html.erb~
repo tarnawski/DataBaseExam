@@ -26,9 +26,19 @@
         <td><%= test.user_id %></td>
         <td><%= test.name %></td>
         <td><%= test.available %></td>
+
+        <%if test.number_of_questions != 0 %>
         <td><%= test.number_of_questions %></td>
+        <% else %>
+        <td>All question</td>
+        <% end %>
+
         <td><%= test.random %></td>
-        <td><%= test.time %></td>
+        <%if test.time != 0 %>
+        <td><%= test.time %> min.</td>
+        <% else %>
+        <td>Ulimited</td>
+        <% end %>
         <td><%= test.single_test %></td>
         <td><%= test.standard_score %></td>
         <td><%= test.bdb %></td>
@@ -38,7 +48,7 @@
         <td><%= link_to 'Edit', edit_test_path(test) %></td>
         <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-       <td><%= link_to 'Wykonaj', :action => "prepare_test", :selected_test => test.id%></td>
+       <td><%= link_to 'Wykonaj', :action => "prepare_test",:id =>test.id, :selected_test => test.id%></td>
       </tr>
     <% end %>
   </tbody>

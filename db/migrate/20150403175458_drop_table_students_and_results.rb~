@@ -1,0 +1,4 @@
+class DropTableStudentsAndResults < ActiveRecord::Migration
+  def change
+  end
+end

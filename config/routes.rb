@@ -5,10 +5,6 @@ Rails.application.routes.draw do
    resources :questions
 end
 
-
-  resources :results
-
-  resources :students 
   resources :answers
 
 
@@ -18,7 +14,7 @@ end
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'students#new'
+   root 'tests#index'
 
   # Example of regular route:
      get 'tests/:id/prepare' => 'tests#prepare_test'

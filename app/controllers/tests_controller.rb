@@ -1,12 +1,22 @@
 class TestsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :new, :edit, :update, :destroy, :create]
+  before_action :authenticate_user!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
+  before_action :admin!, only: [:show, :new, :edit, :update, :destroy, :create]
   before_action :set_test, only: [:show, :edit, :update, :destroy]
    
     expose(:tests)
     expose(:test)
     expose(:question) { Question.new }
 
-   def prepare_test
+  def admin!
+  unless current_user.admin?
+    redirect_to tests_path,
+      flash: { error: 'You are not allowed to edit this product.' }
+  end
+  end
+
+
+
+    def prepare_test
     @students_test = Test.find(params[:selected_test]);
     if @students_test.number_of_questions == 0
     @students_questions = @students_test.questions
