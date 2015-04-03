@@ -1,0 +1,13 @@
+require 'rails_helper'
+
+RSpec.describe Answer, type: :model do
+validate :some_answer_should_be_true
+
+
+
+def some_answer_should_be_true
+    if answer_a == false && answer_b == false && answer_c == false && answer_d == false
+    errors[:base] << "Some answer should be true"
+    end
+end
+end

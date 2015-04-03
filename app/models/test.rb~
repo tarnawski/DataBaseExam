@@ -15,7 +15,7 @@ def score_should_be_correct
 end
 
 def value_of_score_should_be_correct
-	if dost>bd || bd>bdb
+	if dost>=bd || bd>=bdb
     errors[:base] << "Value of scores is incorrect"
 	end
     

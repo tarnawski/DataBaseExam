@@ -1,9 +1,17 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:show, :new, :edit, :update, :destroy, :create]
+  before_action :admin!, only: [:show, :new, :edit, :update, :destroy, :create]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   expose(:test)
   expose(:questions)
   expose(:question)
+
+  def admin!
+  unless current_user.admin?
+    redirect_to tests_path,
+      flash: { error: 'You are not allowed to edit this product.' }
+  end
+  end
 
 
   def index

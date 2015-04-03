@@ -14,18 +14,22 @@
         .navbar-header
           %span.navbar-brand
             -if user_signed_in?
-              Witaj, 
-              = current_user.firstname
-              = current_user.lastname
-              (= current_user.email
+              Hello, 
+              = link_to(current_user.firstname+' '+ current_user.lastname, edit_user_registration_path)
+             
+              
+              (
+              = current_user.email
               )
-        %p.navbar-text.navbar-right
-          
+            -else
+              Hello, you're not logged in, if you do not have an account register ...
+        %p.nav.navbar-brand.navbar-right
           -if user_signed_in?
-            = link_to('Logout', destroy_user_session_path,  :method=>'delete', class: 'btn btn-primary ')
+            = link_to('Logout', destroy_user_session_path,  :method=>'delete')
           -else
-            = link_to('Login', new_user_session_path, class: 'btn btn-primary')
-            = link_to('Sign up ', new_user_registration_path, class: 'btn btn-primary')
+            = link_to('Login', new_user_session_path)
+            or 
+            = link_to('Sign up ', new_user_registration_path)
     .container-fluid
       .row
         .col-lg-12
