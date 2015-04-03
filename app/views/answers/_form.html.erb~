@@ -11,9 +11,9 @@
     </div>
   <% end %>
  <%= @tab %>
- 
+ <%= @quest.id %>
  <br>
- ID pytania: <%= @quest.id %>. Pozostało <%= @tab.count %> pytań.
+ Pozostało <%= @tab.count %> pytań.
  <br>
  <%= @quest.content %>
 <br><br>

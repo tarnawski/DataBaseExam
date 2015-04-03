@@ -8,9 +8,9 @@ end
 
   resources :results
 
-  resources :students do
-   resources :answers
-end
+  resources :students 
+  resources :answers
+
 
   devise_for :users
   devise_for :models
@@ -21,7 +21,8 @@ end
    root 'students#new'
 
   # Example of regular route:
-     get 'students/:id/prepare' => 'students#prepare_test'
+     get 'tests/:id/prepare' => 'tests#prepare_test'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

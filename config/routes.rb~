@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   resources :tests do
    resources :questions
 end
-  resources :answers
+
 
   resources :results
 
-  resources :students
+  resources :students 
+  resources :answers
+
 
   devise_for :users
   devise_for :models
@@ -19,7 +21,8 @@ end
    root 'students#new'
 
   # Example of regular route:
-     get 'students/:id/prepare' => 'students#prepare_test'
+     get 'tests/:id/prepare' => 'tests#prepare_test'
+     get 'answers/result' => 'answers#result'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
     @user_answer.each do |answer|
     @good_answer = Question.find(answer.question_id)
     if(answer.answer_a == @good_answer.a_is_correct && answer.answer_b == @good_answer.b_is_correct && answer.answer_c ==     @good_answer.c_is_correct && answer.answer_d == @good_answer.d_is_correct)
-    @points = @points+1;
+    @points ++
     end
 
     end

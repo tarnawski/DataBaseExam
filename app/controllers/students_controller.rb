@@ -1,5 +1,11 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+   
+    expose(:students)
+    expose(:student)
+    expose(:answer) { Answer.new }
+
+
 
   def prepare_test
     @students_test = Test.find(params[:selected_test]);
@@ -24,7 +30,8 @@ class StudentsController < ApplicationController
     end
 
     session[:tab] = @tab
-
+ 
+    redirect_to  new_answer_path
   end
 
 
