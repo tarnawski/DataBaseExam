@@ -6,6 +6,7 @@ class TestsController < ApplicationController
     expose(:tests)
     expose(:test)
     expose(:question) { Question.new }
+    expose(:result) { Result.new }
 
   def admin!
   unless current_user.admin?

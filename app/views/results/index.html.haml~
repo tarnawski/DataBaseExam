@@ -1,0 +1,26 @@
+%h1 Listing results
+
+%table.table
+  %thead
+    %tr
+      %th Student
+      %th Points
+      %th Mark
+      %th
+      %th
+      %th
+
+  %tbody
+    - @results.each do |result|
+      %tr
+        %td= User.find(result.student_id).firstname+ ' ' + User.find(result.student_id).lastname
+        %td= result.points
+        %td= result.mark
+        %td= result.created_at
+        %td= link_to 'Show', test_result_path(result.test_id, result)
+        %td= link_to 'Edit', edit_test_result_path(result.test_id, result)
+        %td= link_to 'Destroy', test_result_path(result.test_id, result), :method => :delete, :data => { :confirm => 'Are you sure?' }
+        
+%br
+
+= link_to 'Back', test_path

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Student:
+  = @result.student_id
+%p
+  %b Test:
+  = @result.test_id
+%p
+  %b Points:
+  = @result.points
+%p
+  %b Mark:
+  = @result.mark
+
+= link_to 'Edit', edit_test_result_path(result.test_id, result)
+\|
+= link_to 'Back', test_path(:id =>test.id)

@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
+      <th>Teacher</th>
       <th>Name</th>
       <th>Available</th>
       <th>Number of questions</th>
@@ -24,7 +24,7 @@
     <% @tests.each do |test| %>
       <tr>
        <%if (test.available == true && !current_user.admin?) || current_user.admin? %>
-        <td><%= test.user_id %></td>
+        <td><%= User.find(test.user_id).firstname +' ' +User.find(test.user_id).lastname %></td>
         <td><%= test.name %></td>
         <td><%= test.available %></td>
 
@@ -50,6 +50,7 @@
         <td><%= link_to 'Show', test %></td>
         <td><%= link_to 'Edit', edit_test_path(test) %></td>
         <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Results', test_results_path(test) %></td>
         <% end %>
         <td><%= link_to 'Execute', :action => "prepare_test",:id =>test.id, :selected_test => test.id%></td>
         <% end %>

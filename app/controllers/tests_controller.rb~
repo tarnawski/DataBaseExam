@@ -9,7 +9,7 @@ class TestsController < ApplicationController
 
   def admin!
   unless current_user.admin?
-    redirect_to students_path,
+    redirect_to tests_path,
       flash: { error: 'You are not allowed to edit this product.' }
   end
   end

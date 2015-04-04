@@ -1,10 +1,9 @@
 class Answer < ActiveRecord::Base
 belongs_to :student
 
-def self.mark(current_student_id, points)
-    user_answer = Answer.where(student_id: current_student_id).first
-    good_answer = Question.find(user_answer.question_id)
-    current_test = Test.find(good_answer.test_id)
+def self.mark(test_id, points)
+
+    current_test = Test.find(test_id)
 
     if points>=current_test.bdb
     return 5;

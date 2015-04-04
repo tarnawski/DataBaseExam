@@ -17,9 +17,28 @@ class AnswersController < ApplicationController
     end
     end
     @mark = Answer.mark(@good_answer.test_id,@points)
+
+    @results = Result.new
+    @results.student_id = current_user.id
+    @results.test_id = @good_answer.test_id
+    @results.points = @points
+    @results.mark = @mark
+
+    if @results.save
+    @tu_destroy= Answer.where(student_id: current_user.id).all
+    @tu_destroy.each do |tu_destroy|
+    tu_destroy.destroy
+    end
+    end
   end
 
+
+
+
+
+
   def show
+  
   end
 
 

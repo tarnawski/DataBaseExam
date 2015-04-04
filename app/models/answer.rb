@@ -2,9 +2,7 @@ class Answer < ActiveRecord::Base
 belongs_to :student
 
 def self.mark(test_id, points)
-
     current_test = Test.find(test_id)
-
     if points>=current_test.bdb
     return 5;
     elsif points>=current_test.bd
