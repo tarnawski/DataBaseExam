@@ -7,17 +7,16 @@ class AnswersController < ApplicationController
 
 
   def index
+   
     @points = 0
     @user_answer = Answer.where(student_id: current_user.id).all
     @user_answer.each do |answer|
     @good_answer = Question.find(answer.question_id)
-    if(answer.answer_a == @good_answer.a_is_correct && answer.answer_b == @good_answer.b_is_correct && answer.answer_c ==     @good_answer.c_is_correct && answer.answer_d == @good_answer.d_is_correct)
-    @points ++
+    if(answer.answer_a == @good_answer.a_is_correct && answer.answer_b == @good_answer.b_is_correct && answer.answer_c ==          @good_answer.c_is_correct && answer.answer_d == @good_answer.d_is_correct)
+    @points = @points + 1
     end
-
     end
-
-
+    @mark = Answer.mark(@good_answer.test_id,@points)
   end
 
   def show

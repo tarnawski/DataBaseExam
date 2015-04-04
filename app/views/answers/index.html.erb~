@@ -31,5 +31,12 @@
 </table>
 
 <br>
+Nazwa testu: <%= @current_test.name %>
+<br>
+Points: <%= @points %>  
+<br>
+Mark: <%= @mark %>  
+
+
 
 
