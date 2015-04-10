@@ -1,0 +1,15 @@
+FactoryGirl.define do
+  factory :question, :class => 'Questions' do
+      content: 'Some questions'
+      answer_a: 'Some answer A'
+      answer_b: 'Some answer B'
+      answer_c: 'Some answer C'
+      answer_d: 'Some answer D'
+      a_is_correct: true
+      b_is_correct: false
+      c_is_correct: false
+      d_is_correct: false
+      test 
+  end
+
+end
