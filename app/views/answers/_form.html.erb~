@@ -10,12 +10,8 @@
       </ul>
     </div>
   <% end %>
- <%= @tab %>
- 
- <br>
- ID question: <%= @quest.id %>. Left <%= @tab.count %> questions.
- <br>
- <%= @quest.content %>
+
+
 <br><br>
   <div class="field">
     <%= f.check_box :answer_a %>

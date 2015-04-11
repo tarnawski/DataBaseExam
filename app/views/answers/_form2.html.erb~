@@ -11,28 +11,28 @@
     </div>
   <% end %>
 
- <br>
- <%= @quest.content %>
-<br><br>
+
+ <h3><%= Question.find(@answer.question_id).content %></h3>
+
   <div class="field">
     <%= f.check_box :answer_a %>
-    <%= @quest.answer_a %>
+    <%= Question.find(@answer.question_id).answer_a %>
     
   </div>
   <div class="field">
     <%= f.check_box :answer_b %>
-    <%= @quest.answer_b %>
+    <%= Question.find(@answer.question_id).answer_b %>
   </div>
   <div class="field">
     <%= f.check_box :answer_c %>
-    <%= @quest.answer_c %>
+    <%= Question.find(@answer.question_id).answer_c %>
   </div>
   <div class="field">
     <%= f.check_box :answer_d %>
-    <%= @quest.answer_d %>
+    <%= Question.find(@answer.question_id).answer_d %>
   </div>
 <br>
   <div class="actions">
-    <%= f.submit %>
+    <button type="f.submit" class="btn btn-primary">Wyślij!</button>
   </div>
 <% end %>

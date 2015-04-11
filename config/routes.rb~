@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
 
-  resources :results
+
 
   resources :tests do
    resources :questions
+     resources :results
 end
 
   resources :answers
@@ -20,6 +21,7 @@ end
 
   # Example of regular route:
      get 'tests/:id/prepare' => 'tests#prepare_test'
+     get 'answers/prepare' => 'answers#prepare'
 
 
 end

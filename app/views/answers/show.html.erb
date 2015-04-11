@@ -1,33 +1,33 @@
-<p id="notice"><%= notice %></p>
+ <div class="row">
+<div class="col-lg-3">
+<h2>List of questions</h2>
 
-<p>
-  <strong>Student:</strong>
-  <%= @answer.student_id %>
-</p>
+<% @tab.each do |tab| %>
+<% if (tab.answer_a==false) && (tab.answer_b==false) && (tab.answer_c==false) && (tab.answer_d==false) %>
+<i class="fa fa-minus-square"></i>
+<%else%> 
+<i class="fa fa-check-square-o"></i>
+<%end%>
+<%= link_to Question.find(tab.question_id).content, answer_path(tab.id) %> <br>
+<% end %>
 
-<p>
-  <strong>Question:</strong>
-  <%= @answer.question_id %>
-</p>
+<br> ID current question: 
+<%= @answer.question_id%>
 
-<p>
-  <strong>Answer a:</strong>
-  <%= @answer.answer_a %>
-</p>
+<br><br><br>
+Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
+<div class="progress">
+<div class="progress-bar progress-bar-success" style="width: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%"></div>
+</div> 
+<br>
+<%= link_to 'Finish test and send answers', answers_path, class: 'btn btn-warning' %>
 
-<p>
-  <strong>Answer b:</strong>
-  <%= @answer.answer_b %>
-</p>
+</div>
+<div class="col-lg-1">
 
-<p>
-  <strong>Answer c:</strong>
-  <%= @answer.answer_c %>
-</p>
-
-<p>
-  <strong>Answer d:</strong>
-  <%= @answer.answer_d %>
-</p>
-
-
+</div>
+<div class="col-lg-8">
+<h2>Current question</h2>
+<%= render 'form2' %>
+</div>
+</div> 

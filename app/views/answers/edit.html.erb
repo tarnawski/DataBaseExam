@@ -1,6 +1,11 @@
 <h1>Editing Answer</h1>
+<% @tab.each do |tab| %>
+<%= tab.question_id %>
+<% end %>
+<br> Ilość:
+<%= @tab.length %>
+<br> Aktualny:
+<%= @answer.question_id%>
 
-<%= render 'form' %>
+<%= render 'form2' %>
 
-<%= link_to 'Show', @answer %> |
-<%= link_to 'Back', answers_path %>

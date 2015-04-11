@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update]
+  before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
   expose(:student)
   expose(:answers)
@@ -7,6 +7,7 @@ class AnswersController < ApplicationController
 
 
   def index
+   
     @points = 0
     @user_answer = Answer.where(student_id: current_user.id).all
     @user_answer.each do |answer|
@@ -33,40 +34,24 @@ class AnswersController < ApplicationController
 
 
   def edit
- 
+
   end
 
 
 
   def show
-    @tab = Answer.where(student_id: current_user.id).order("id")
-    @answer = Answer.find(params[:id])
-
-    @not_checked = Answer.where(answer_a: false, answer_b: false, answer_c: false, answer_d: false).count
-    
+  
   end
 
 
-  def prepare
+  def new
+    @answer = Answer.new
     @tab = session[:tab]
-    @tab.each do |tab|
-    @answer = Answer.new()
-    @quest = Question.find(tab)
-    @answer.question_id = @quest.id
-    @answer.student_id = current_user.id
-    @answer.answer_a = false
-    @answer.answer_b = false
-    @answer.answer_c = false
-    @answer.answer_d = false
-    @answer.save
+    if(@tab.count==0)
+    redirect_to answers_path
+    elsif
+    @quest = Question.find(@tab[0])
     end
-    
-  end
-
-
-def new
-prepare
-redirect_to answer_path(Answer.where(student_id: current_user.id).first.id)
 end
 
 
@@ -85,20 +70,27 @@ end
   end
 
   def update
-
   @answer.update(answer_params)
-        
-   redirect_to answer_path
+   render action: 'edit'
   end
 
-
+  # DELETE /answers/1
+  # DELETE /answers/1.json
+  def destroy
+    @answer.destroy
+    respond_to do |format|
+      format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
-
+    # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
     end
 
+    # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
       params.require(:answer).permit(:student_id, :question_id, :answer_a, :answer_b, :answer_c, :answer_d)
     end
