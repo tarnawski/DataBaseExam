@@ -1,10 +1,16 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: [:show, :edit, :update, :destroy]
-  
+  before_action :admin!, only: [:index, :show, :edit, :update, :destroy] 
   expose(:test)
   expose(:results)
   expose(:result)
 
+  def admin!
+  unless current_user.admin?
+    redirect_to tests_path,
+      flash: { error: 'You are not allowed to edit this question.' }
+  end
+  end
 
   # GET /results
   # GET /results.json

@@ -1,8 +1,6 @@
 - Jeśli test ma param. avaible=false nie pozwól, aby użytkownik (admin=false) go wykonał
 - Jeśli test ma param. single_test=true nie pozwól aby kilka odpowiedzi było prawdziwych
-- Jeśli test ma param. standard_score=true to oceniaj według skali:
-50%-3, 75%-4, 90%-5
+
 - zmienić design
 
-
-(ip komputera wykonującego egzamin musi pasować do wzorca)  
+ 

@@ -1,10 +1,16 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: [:show, :edit, :update, :destroy]
-  
+  before_action :admin!, only: [:show, :edit, :update, :destroy] 
   expose(:test)
   expose(:results)
   expose(:result)
 
+  def admin!
+  unless current_user.admin?
+    redirect_to tests_path,
+      flash: { error: 'You are not allowed to edit this question.' }
+  end
+  end
 
   # GET /results
   # GET /results.json
@@ -26,20 +32,9 @@ class ResultsController < ApplicationController
   def edit
   end
 
-  # POST /results
-  # POST /results.json
-  def create
-    @result = Result.new(result_params)
 
-    respond_to do |format|
-      if @result.save
-        format.html { redirect_to @result, notice: 'Result was successfully created.' }
-        format.json { render :show, status: :created, location: @result }
-      else
-        format.html { render :new }
-        format.json { render json: @result.errors, status: :unprocessable_entity }
-      end
-    end
+  def create
+   
   end
 
   # PATCH/PUT /results/1

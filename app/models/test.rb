@@ -1,5 +1,6 @@
 class Test < ActiveRecord::Base
 has_many :questions
+has_many :results
 
 validates_presence_of :name
 validates :name, uniqueness: true

@@ -1,22 +1,18 @@
-= form_for [test, result] do |f|
+= form_for [test, question, result] do |f|
   - if result.errors.any?
     #error_explanation
-      %h2= "#{pluralize(result.errors.count, "error")} prohibited this result from being saved:"
+      %h2= "#{pluralize(result.errors.count, "error")} prohibited this question from being saved:"
       %ul
         - result.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :student_id
-    = f.number_field :student_id
-  .field
-    = f.label :test_id
-    = f.number_field :test_id
-  .field
+
+  .form-group
     = f.label :points
     = f.number_field :points
-  .field
+  .form-group
     = f.label :mark
     = f.text_field :mark
-  .actions
-    = f.submit 'Save'
+
+
+  = f.submit 'Save'

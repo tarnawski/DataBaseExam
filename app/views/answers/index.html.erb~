@@ -10,4 +10,5 @@ Your mark is: <%= @mark %>
 
 </h2>
 
+<%=link_to 'Back', tests_path %>
 

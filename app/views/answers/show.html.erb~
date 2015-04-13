@@ -1,5 +1,5 @@
  <div class="row">
-<div class="col-lg-4">
+<div class="col-lg-3">
 <h2>List of questions</h2>
 
 <% @tab.each do |tab| %>
@@ -11,8 +11,6 @@
 <%= link_to Question.find(tab.question_id).content, answer_path(tab.id) %> <br>
 <% end %>
 
-<br> ID current question: 
-<%= @answer.question_id%>
 
 <br><br><br>
 Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
@@ -26,8 +24,8 @@ Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
 <div class="col-lg-1">
 
 </div>
-<div class="col-lg-7">
-<h2>Current question</h2>
+<div class="col-lg-8">
+<h2>Current question (ID: <%= @answer.question_id%>)</h2>
 <%= render 'form2' %>
 </div>
 </div> 

@@ -1,2 +1,17 @@
 class Result < ActiveRecord::Base
+belongs_to :test
+
+validate :some_answer_should_be_true
+
+
+
+def some_answer_should_be_true
+    if points<10
+    errors[:base] << "Some answer should be true"
+    end
+end
+
+
+
+
 end
