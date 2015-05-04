@@ -35,7 +35,7 @@ class AnswersController < ApplicationController
     @tab = Answer.where(student_id: current_user.id).order("id")
     @answer = Answer.find(params[:id])
 
-    @not_checked = Answer.where(answer:'').count
+    @not_checked = Answer.where(answer:'',student_id: current_user.id).count
  
 
 @sql = Answer.find(params[:id]).answer
@@ -51,7 +51,8 @@ if @sql.include?("create") || @sql.include?("insert") || @sql.include?("update")
 elsif
 
  begin
-    @zmienna=ActiveRecord::Base.connection.exec_query (@sql)
+    
+    @zmienna=ActiveRecord::Base.establish_connection ("testwa").exec_query (@sql)
   rescue 
     @err = "In Your's query is something wrong, so can't execute"
   end
@@ -64,9 +65,9 @@ end
 
   def prepare
 
-    @tu_destroy= Answer.where(student_id: current_user.id).all
-    @tu_destroy.each do |tu_destroy|
-    tu_destroy.destroy
+    @to_destroy= Answer.where(student_id: current_user.id).all
+    @to_destroy.each do |to_destroy|
+    to_destroy.destroy
     end
 
 

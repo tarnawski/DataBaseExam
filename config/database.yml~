@@ -13,3 +13,13 @@ development:
 test: &test
   <<: *connection
   database: workshops_test
+
+
+testowa:
+  adapter: postgresql
+  encoding: unicode
+  host:     localhost
+  pool: 5
+  username: postgres
+  password: tarnawski
+  database: test

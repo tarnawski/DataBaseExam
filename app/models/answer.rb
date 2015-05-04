@@ -2,9 +2,11 @@ class Answer < ActiveRecord::Base
 belongs_to :student
 
 connection = ActiveRecord::Base.connection
+
+
    
     def self.answer_sql(query)
-
+    
       transaction do
         connection.execute query
         connection.schema_cache.clear! 

@@ -51,6 +51,7 @@ if @sql.include?("create") || @sql.include?("insert") || @sql.include?("update")
 elsif
 
  begin
+    
     @zmienna=ActiveRecord::Base.connection.exec_query (@sql)
   rescue 
     @err = "In Your's query is something wrong, so can't execute"
@@ -64,9 +65,9 @@ end
 
   def prepare
 
-    @tu_destroy= Answer.where(student_id: current_user.id).all
-    @tu_destroy.each do |tu_destroy|
-    tu_destroy.destroy
+    @to_destroy= Answer.where(student_id: current_user.id).all
+    @to_destroy.each do |to_destroy|
+    to_destroy.destroy
     end
 
 
