@@ -15,24 +15,17 @@
  <h3><%= Question.find(@answer.question_id).content %></h3>
 
   <div class="field">
-    <%= f.check_box :answer_a %>
-    <%= Question.find(@answer.question_id).answer_a %>
-    
-  </div>
-  <div class="field">
-    <%= f.check_box :answer_b %>
-    <%= Question.find(@answer.question_id).answer_b %>
-  </div>
-  <div class="field">
-    <%= f.check_box :answer_c %>
-    <%= Question.find(@answer.question_id).answer_c %>
-  </div>
-  <div class="field">
-    <%= f.check_box :answer_d %>
-    <%= Question.find(@answer.question_id).answer_d %>
-  </div>
+  <%= f.text_area :answer,class: 'form-control' %>
+
+  
 <br>
+
   <div class="actions">
-    <button type="f.submit" class="btn btn-primary">Wyślij!</button>
+
+
+
+    <button type="f.submit" class="btn btn-primary">Reload result and save answer</button>
   </div>
 <% end %>
+
+

@@ -20,25 +20,8 @@ class AnswersController < ApplicationController
 
 
   def index
-    @points = 0
-    @user_answer = Answer.where(student_id: current_user.id).all
-    @user_answer.each do |answer|
-    @good_answer = Question.find(answer.question_id)
-    if(answer.answer_a == @good_answer.a_is_correct && answer.answer_b == @good_answer.b_is_correct && answer.answer_c ==          @good_answer.c_is_correct && answer.answer_d == @good_answer.d_is_correct)
-    @points = @points + 1
-    end
-    end
-    @mark = Answer.mark(@good_answer.test_id,@points)
 
-    @results = Result.new
-    @results.student_id = current_user.id
-    @results.test_id = @good_answer.test_id
-    @results.points = @points
-    @results.mark = @mark
 
-    if @results.save
-    
-    end
   end
 
 
@@ -52,8 +35,30 @@ class AnswersController < ApplicationController
     @tab = Answer.where(student_id: current_user.id).order("id")
     @answer = Answer.find(params[:id])
 
-    @not_checked = Answer.where(answer_a: false, answer_b: false, answer_c: false, answer_d: false, student_id: current_user.id ).count
-    
+    @not_checked = Answer.where(answer:'').count
+ 
+
+@sql = Answer.find(params[:id]).answer
+
+if @sql.include?("create") || @sql.include?("insert") || @sql.include?("update") || @sql.include?("delete")
+
+  begin
+    @zmienna=Answer.answer_sql(@sql)
+  rescue 
+    @err = "In Your's query is something wrong, so can't execute"
+  end
+
+elsif
+
+ begin
+    @zmienna=ActiveRecord::Base.connection.exec_query (@sql)
+  rescue 
+    @err = "In Your's query is something wrong, so can't execute"
+  end
+
+end
+  
+   
   end
 
 
@@ -71,10 +76,7 @@ class AnswersController < ApplicationController
     @quest = Question.find(tab)
     @answer.question_id = @quest.id
     @answer.student_id = current_user.id
-    @answer.answer_a = false
-    @answer.answer_b = false
-    @answer.answer_c = false
-    @answer.answer_d = false
+    @answer.answer = ''
     @answer.save
     end
     
@@ -88,23 +90,12 @@ end
 
 
   def create
-    @tab = session[:tab]
-    @quest = Question.find(@tab[0])
-
-    @answer = Answer.new(answer_params)
-    @answer.question_id = @quest.id
-    @answer.student_id = current_user.id
-    @answer.save
-
-    @tab = @tab[1, @tab.length]
-    session[:tab] = @tab
-    redirect_to new_answer_path
   end
 
   def update
 
-  @answer.update(answer_params)
-        
+   @answer.update(answer_params)
+       
    redirect_to answer_path
   end
 
@@ -117,6 +108,6 @@ end
     end
 
     def answer_params
-      params.require(:answer).permit(:student_id, :question_id, :answer_a, :answer_b, :answer_c, :answer_d)
+      params.require(:answer).permit(:student_id, :question_id, :answer)
     end
 end

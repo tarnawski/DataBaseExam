@@ -1,0 +1,49 @@
+class Task < ActiveRecord::Base
+
+
+connection = ActiveRecord::Base.connection
+   # self.abstract_class = true # Co by nie działało STI i można było z tej klasy dziedziczyć.
+    self.inheritance_column = nil # Wyłącza STI nawet jakby się pojawiła kolumna "type"
+
+    
+
+    def self.correct_sql(query)
+
+      transaction do
+        connection.execute query
+
+        connection.schema_cache.clear! 
+        reset_column_information
+
+        @result = ActiveRecord::Base.connection.exec_query("select * from klienci")
+
+        raise ActiveRecord::Rollback
+                 
+      end
+
+   return @result
+end
+
+
+    def self.users_sql(query)
+
+      transaction do
+        connection.execute query
+
+        connection.schema_cache.clear! 
+        reset_column_information
+
+        @result = ActiveRecord::Base.connection.exec_query("select * from klienci")
+
+        raise ActiveRecord::Rollback
+                 
+      end
+
+   return @result
+end
+
+
+
+
+end
+

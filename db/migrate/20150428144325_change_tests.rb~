@@ -1,0 +1,4 @@
+class ChangeTests < ActiveRecord::Migration
+  def change
+  end
+end

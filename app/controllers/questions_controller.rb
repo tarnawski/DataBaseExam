@@ -80,6 +80,6 @@ end
 
 
     def question_params
-      params.require(:question).permit(:test_id, :content, :answer_a, :answer_b, :answer_c, :answer_d, :a_is_correct, :b_is_correct, :c_is_correct, :d_is_correct)
+      params.require(:question).permit(:test_id, :content, :query)
     end
 end

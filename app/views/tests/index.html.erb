@@ -10,8 +10,8 @@
       <th>Available</th>
       <th>Number of questions</th>
       <th>Random</th>
-      <th>Time</th>
-      <th>Single test</th>
+      <th>DataBase</th>
+
       <th>Standard score</th>
       <th>Bdb</th>
       <th>Bd</th>
@@ -35,13 +35,7 @@
         <% end %>
 
         <td><%= test.random %></td>
-        <%if test.time != 0 %>
-        <td><%= test.time %> min.</td>
-        <% else %>
-        <td>Unlimited</td>
-        <% end %>
-
-        <td><%= test.single_test %></td>
+        <td><%= test.database %></td>
         <td><%= test.standard_score %></td>
         <td><%= test.bdb %></td>
         <td><%= test.bd %></td>

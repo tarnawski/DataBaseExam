@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404142011) do
+ActiveRecord::Schema.define(version: 20150428152147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,23 @@ ActiveRecord::Schema.define(version: 20150404142011) do
   create_table "answers", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "question_id"
-    t.boolean  "answer_a"
-    t.boolean  "answer_b"
-    t.boolean  "answer_c"
-    t.boolean  "answer_d"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "answer"
+  end
+
+  create_table "klienci", id: false, force: :cascade do |t|
+    t.integer "id_klienta"
+    t.string  "nazwa",           limit: 100
+    t.string  "adres",           limit: 100
+    t.string  "miasto",          limit: 100
+    t.string  "stan",            limit: 10
+    t.string  "kod_pocztowy",    limit: 9
+    t.integer "nr_kierunkowy"
+    t.integer "telefon"
+    t.integer "id_pracownika"
+    t.integer "limit_kredytowy"
+    t.string  "komentarz",       limit: 500
   end
 
   create_table "models", force: :cascade do |t|
@@ -48,16 +59,9 @@ ActiveRecord::Schema.define(version: 20150404142011) do
   create_table "questions", force: :cascade do |t|
     t.integer  "test_id"
     t.text     "content"
-    t.text     "answer_a"
-    t.text     "answer_b"
-    t.text     "answer_c"
-    t.text     "answer_d"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "a_is_correct", default: false
-    t.boolean  "b_is_correct", default: false
-    t.boolean  "c_is_correct", default: false
-    t.boolean  "d_is_correct", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "query"
   end
 
   create_table "results", force: :cascade do |t|
@@ -69,12 +73,16 @@ ActiveRecord::Schema.define(version: 20150404142011) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "query"
+    t.text   "content"
+  end
+
   create_table "tests", force: :cascade do |t|
     t.string   "name"
     t.boolean  "available"
     t.integer  "user_id"
     t.boolean  "random"
-    t.boolean  "single_test"
     t.boolean  "standard_score"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -82,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150404142011) do
     t.integer  "bdb",                 default: 0
     t.integer  "bd",                  default: 0
     t.integer  "dost",                default: 0
-    t.integer  "time",                default: 0
+    t.integer  "database"
   end
 
   create_table "users", force: :cascade do |t|

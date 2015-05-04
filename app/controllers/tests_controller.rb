@@ -40,7 +40,7 @@ class TestsController < ApplicationController
     end
 
     session[:tab] = @tab
- 
+    session[:start] = Time.now
     redirect_to  new_answer_path
   end
 
@@ -115,6 +115,6 @@ class TestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_params
-      params.require(:test).permit(:name, :available, :user_id, :number_of_questions, :random, :time, :single_test, :standard_score, :bdb, :bd, :dost)
+      params.require(:test).permit(:name, :available, :user_id, :number_of_questions, :random, :database, :standard_score, :bdb, :bd, :dost)
     end
 end

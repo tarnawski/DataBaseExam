@@ -7,14 +7,7 @@
     <tr>
       <th>Test</th>
       <th>Content</th>
-      <th>Answer a</th>
-      <th>Answer b</th>
-      <th>Answer c</th>
-      <th>Answer d</th>
-      <th>Correct A</th>
-      <th>Correct B</th>
-      <th>Correct C</th>
-      <th>Correct D</th>
+      <th>Correct query</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,14 +17,7 @@
       <tr>
         <td><%= question.test_id %></td>
         <td><%= question.content %></td>
-        <td><%= question.answer_a %></td>
-        <td><%= question.answer_b %></td>
-        <td><%= question.answer_c %></td>
-        <td><%= question.answer_d %></td>
-        <td><%= question.a_is_correct %></td>
-        <td><%= question.b_is_correct %></td>
-        <td><%= question.c_is_correct %></td>
-        <td><%= question.d_is_correct %></td>
+        <td><%= question.query %></td>
         <td><%= link_to 'Show', test_question_path(question.test_id, question)%></td>
         <td><%= link_to 'Edit', edit_test_question_path(question.test_id, question) %></td>
         <td><%= link_to 'Destroy', test_question_path(question.test_id, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>

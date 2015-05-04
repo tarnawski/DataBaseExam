@@ -1,9 +1,9 @@
  <div class="row">
-<div class="col-lg-3">
-<h2>List of questions</h2>
+<div class="col-lg-2">
+<h2>Questions</h2>
 
 <% @tab.each do |tab| %>
-<% if (tab.answer_a==false) && (tab.answer_b==false) && (tab.answer_c==false) && (tab.answer_d==false) %>
+<% if (tab.answer=='')%>
 <i class="fa fa-minus-square"></i>
 <%else%> 
 <i class="fa fa-check-square-o"></i>
@@ -18,14 +18,39 @@ Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
 <div class="progress-bar progress-bar-success" style="width: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%"></div>
 </div> 
 <br>
-<%= link_to 'Finish test and send answers', answers_path, class: 'btn btn-warning' %>
+<%= link_to 'Finish test and show results', answers_path, class: 'btn btn-danger' %>
+<br><br><br>
+<h4>You solve already:<br> 
+<%=distance_of_time_in_words_to_now(session[:start])%></h4>
 
+(Time is updated when you save ansver or <a href="javascript:location.reload()">refresh </a>page)
 </div>
 <div class="col-lg-1">
 
 </div>
-<div class="col-lg-8">
+<div class="col-lg-9">
 <h2>Current question (ID: <%= @answer.question_id%>)</h2>
 <%= render 'form2' %>
+<br>
+<h3><%=@err%></h3>
+<%- if @zmienna %>
+
+<table class="table">
+    <tr>
+      <%  @zmienna.columns.each do |columns| %>
+        <th><%= columns %> </th>
+        <% end %>
+    
+     <%  @zmienna.rows.each do |rows| %>
+     <tr>   
+     <%  rows.each do |tom| %>
+     
+        <td><%= tom %> </td>
+     <% end %>
+	</tr>
+
+     <% end %>
+</tr>
+<%end%>
 </div>
 </div> 

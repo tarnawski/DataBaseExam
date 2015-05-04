@@ -1,0 +1,4 @@
+class ChangeAnswer < ActiveRecord::Migration
+  def change
+  end
+end

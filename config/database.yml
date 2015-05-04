@@ -8,8 +8,8 @@ connection: &connection
 
 development:
   <<: *connection
-  database: projekt_development
+  database: workshops_development
 
 test: &test
   <<: *connection
-  database: projekt_test
+  database: workshops_test
