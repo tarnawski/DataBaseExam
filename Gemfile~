@@ -10,6 +10,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'rspec-rails', '~> 3.0'
 #For RSpec  
 gem 'shoulda-matchers'
+gem "factory_girl_rails", "~> 4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'

@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
 
 
+  resources :databases
+
   resources :tasks
 
-  resources :zadanies
+
 
   resources :tests do
    resources :questions

@@ -1,0 +1,39 @@
+%h1 Listing databases
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Comment
+      %th Adapter
+      %th Encoding
+      %th Host
+      %th Pool
+      %th Username
+      %th Password
+      %th Database
+      %th Image path
+      %th
+      %th
+      %th
+
+  %tbody
+    - @databases.each do |database|
+      %tr
+        %td= database.name
+        %td= database.comment
+        %td= database.adapter
+        %td= database.encoding
+        %td= database.host
+        %td= database.pool
+        %td= database.username
+        %td= database.password
+        %td= database.database
+        %td= database.image_path
+        %td= link_to 'Show', database
+        %td= link_to 'Edit', edit_database_path(database)
+        %td= link_to 'Destroy', database, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Database', new_database_path

@@ -41,6 +41,7 @@ class TestsController < ApplicationController
 
     session[:tab] = @tab
     session[:start] = Time.now
+    
     redirect_to  new_answer_path
   end
 
