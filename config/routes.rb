@@ -7,11 +7,11 @@ Rails.application.routes.draw do
 
   resources :tasks
 
-
+  resources :databases
 
   resources :tests do
    resources :questions
-   resources :databases
+
 
 
    resources :results
@@ -26,7 +26,7 @@ end
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'test#index'
+   root 'tests#index'
 
   # Example of regular route:
      get 'tests/:id/prepare' => 'tests#prepare_test'

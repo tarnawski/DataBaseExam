@@ -28,8 +28,9 @@
     <%= f.check_box :random %>
   </div>
 <div class="form-group">
-    <%= f.label :database %><br>
-    <%= f.number_field :database, class: 'form-control' %>
+    <%= f.label :database %> <%= link_to 'Add new connection', new_database_path %><br>
+  <%= f.collection_select :database, Database.all, :id, :name, prompt: true %>
+ 
   </div>
 <div class="form-group">
     <%= f.label :standard_score %><br>

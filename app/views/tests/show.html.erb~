@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
  <div class="row">
-<div class="col-lg-2">
+<div class="col-lg-3">
 <h1>Test details</h1>
 <p>
   <strong>Name:</strong>
@@ -14,7 +14,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= test.user_id %>
+  <%= User.find(test.user_id).firstname + ' ' + User.find(test.user_id).lastname %>
 </p>
 
 <p>

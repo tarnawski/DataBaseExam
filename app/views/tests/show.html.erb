@@ -14,7 +14,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= test.user_id %>
+  <%= User.find(test.user_id).firstname + ' ' + User.find(test.user_id).lastname %>
 </p>
 
 <p>
@@ -29,7 +29,8 @@
 
 <p>
   <strong>DataBase:</strong>
-  <%= test.database %>
+  <%= Database.find(test.database).name %>
+
 </p>
 
 

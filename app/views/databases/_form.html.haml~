@@ -37,6 +37,5 @@
     = f.label :image_path
     = f.text_field :image_path, class: 'form-control'
   .actions
-    <br>
     = f.submit 'Save'
 <br>

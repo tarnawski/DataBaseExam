@@ -11,7 +11,7 @@
       <th>Number of questions</th>
       <th>Random</th>
       <th>DataBase</th>
-      <th>Single test</th>
+
       <th>Standard score</th>
       <th>Bdb</th>
       <th>Bd</th>
@@ -35,7 +35,7 @@
         <% end %>
 
         <td><%= test.random %></td>
-        <td><%= test.database %></td>
+        <td>  <%= Database.find(test.database).name %></td>
         <td><%= test.standard_score %></td>
         <td><%= test.bdb %></td>
         <td><%= test.bd %></td>
