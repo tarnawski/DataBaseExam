@@ -10,8 +10,10 @@
 <%end%>
 <%= link_to Question.find(tab.question_id).content, answer_path(tab.id) %> <br>
 <% end %>
-
-
+<br>
+Pracujesz w bazie danych:<br>
+<b><%=@current_database.name%></b>
+<br>
 <br>
 Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
 <div class="progress">

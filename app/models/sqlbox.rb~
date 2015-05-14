@@ -1,0 +1,3 @@
+class Sqlbox < ActiveRecord::Base
+end
+

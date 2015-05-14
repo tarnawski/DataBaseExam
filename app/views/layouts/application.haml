@@ -27,6 +27,7 @@
         %p.nav.navbar-brand.navbar-right
           -if user_signed_in?
             = link_to('Logout', destroy_user_session_path,  :method=>'delete')
+            <a target="SQLBox" href="sqlbox/index" onclick="window.open('sqlbox/index', 'SQLBox', 'menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=no,fullscreen=no,channelmode=no,width=800,height=500')">SQLBox</a>
           -else
             = link_to('Login', new_user_session_path)
             or 

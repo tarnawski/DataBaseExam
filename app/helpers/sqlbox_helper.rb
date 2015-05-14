@@ -1,0 +1,2 @@
+module SqlboxHelper
+end

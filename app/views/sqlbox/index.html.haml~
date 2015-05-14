@@ -1,0 +1,37 @@
+%p#notice= notice
+
+
+%p
+  %h3
+
+
+= form_tag(sqlbox_index_path, :method=>'get') do
+  .form-group
+    =select_tag :database, options_for_select( Database.all.map{|l| [l.name, l.id] }),class: 'form-control'
+    %br
+    =text_area_tag :sql, @sql,class: 'form-control'
+  =button_tag 'Execute query', value: 'show', type: :submit, class: 'btn btn-primary'
+  
+%br
+
+%h3 
+  =@err
+
+-if @zmienna2
+  -if @button == 'show'
+    %h3
+      Result for your query
+    %table.table
+      %tr
+      - @zmienna2.columns.each do |columns|
+        %th= columns
+      - @zmienna2.rows.each do |rows|
+        %tr
+        - rows.each do |tom|
+          %td= tom
+
+
+
+
+%br
+%br

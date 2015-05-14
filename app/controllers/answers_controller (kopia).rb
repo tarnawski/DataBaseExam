@@ -7,17 +7,11 @@ class AnswersController < ApplicationController
   expose(:answers)
   expose(:answer)
 
-
-
-
-  #Ustalenie testu oraz bazy danych i sprawdzanie czy użytkownik ma dostęp do pytania
+  #Sprawdzanie czy użytkownik ma dostęp do pytania
   def acces!
-     @get_session = session[:tab]
-     @first_question_in_session = Question.find(@get_session[0])
-     @current_test = Test.find(@first_question_in_session.test_id)
-     @current_database = Database.find(@current_test.database)
-
-  unless (current_user.admin?) || (!current_user.admin?) && (@current_test.available)
+  @acces = session[:tab]
+  @acces = Question.find(@acces[0])
+  unless (current_user.admin?) || (!current_user.admin?) && (Test.find(@acces.test_id).available)
     redirect_to tests_path,
       flash: { error: 'You are not allowed to edit this question.' }
   end
@@ -25,32 +19,6 @@ class AnswersController < ApplicationController
 
 
   def index
-  @all_answers = Answer.where(student_id: current_user.id).order("id")
-  @points =0;
-  @all_answers.each do |answer|
-if answer.answer!=''   
- begin
-zm1=TestDataBase.connection.exec_query (answer.answer)
-@zm1=zm1.to_hash
-  rescue 
-@zm1="null"
-  end
- begin
-zm2=TestDataBase.connection.exec_query (Question.find(answer.question_id).query)
-@zm2=zm2.to_hash
-  rescue 
-@zm2="null"
-  end
-
-
-
-if (@zm1!='' && @zm2!='' && @zm1==@zm2)
-@points = @points+1
-end
-
-end  
-  end
-
 
   end
 
@@ -105,7 +73,8 @@ end
     end
 
     #Przygotowanie tabeli Answers
-    @get_session.each do |tab|
+    @tab = session[:tab]
+    @tab.each do |tab|
     @answer = Answer.new()
     @quest = Question.find(tab)
     @answer.question_id = @quest.id
@@ -115,7 +84,7 @@ end
     end
 
     #Wywołanie funkcji odpowiednio przygotowującej połączenie z bazą danych 
-    TestDataBase.prepare_connection(@current_test.database)
+    TestDataBase.prepare_connection(Test.find(@quest.test_id).database)
   end
 
 #Wywołanie funkcji przygotowującej tabele Answers na odpowiedzi oraz przekierowanie do pierwszego pytania

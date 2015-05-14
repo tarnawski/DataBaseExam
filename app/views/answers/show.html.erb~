@@ -10,7 +10,9 @@
 <%end%>
 <%= link_to Question.find(tab.question_id).content, answer_path(tab.id) %> <br>
 <% end %>
-
+<br>
+Pracujesz w bazie danych:<br>
+<b><%=@current_database.name%></b>
 
 <br>
 Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
@@ -18,7 +20,7 @@ Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
 <div class="progress-bar progress-bar-success" style="width: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%"></div>
 </div> 
 <br>
-<%= link_to 'Finish test', answers_path, class: 'btn btn-danger' %>
+<%= link_to 'Finish test and show results', answers_path, class: 'btn btn-danger' %>
 <br><br><br>
 <h4>You solve already:<br> 
 <%=distance_of_time_in_words_to_now(session[:start])%></h4>
