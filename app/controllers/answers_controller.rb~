@@ -42,10 +42,15 @@ zm2=TestDataBase.connection.exec_query (Question.find(answer.question_id).query)
 @zm2="null"
   end
 
-
-
-if (@zm1!='' && @zm2!='' && @zm1==@zm2)
+if (!@zm1.empty? && !@zm2.empty?)
+if(@zm1==@zm2)
 @points = @points+1
+else
+
+#if(@zm1==@zm2)
+#@points = @points+1
+#end
+end
 end
 
 end  

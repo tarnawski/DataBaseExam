@@ -28,7 +28,8 @@ class AnswersController < ApplicationController
   @all_answers = Answer.where(student_id: current_user.id).order("id")
   @points =0;
   @all_answers.each do |answer|
-if answer.answer!=''   
+if answer.answer!=''
+   
  begin
 zm1=TestDataBase.connection.exec_query (answer.answer)
 @zm1=zm1.to_hash
@@ -42,10 +43,15 @@ zm2=TestDataBase.connection.exec_query (Question.find(answer.question_id).query)
 @zm2="null"
   end
 
-
-
-if (!@zm1.empty? && !@zm2.empty? && @zm1==@zm2)
+if (!@zm1.empty? && !@zm2.empty?)
+if(@zm1==@zm2)
 @points = @points+1
+else
+
+#if(@zm1==@zm2)
+#@points = @points+1
+#end
+end
 end
 
 end  

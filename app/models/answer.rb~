@@ -37,8 +37,8 @@ end
 
 class TestDataBase < Answer
 
-  
-def self.prepare(number)
+#Funkcja przygotowująca połączenie z odpowiednią bazą danych  
+def self.prepare_connection(number)
 baza = Database.find(number)
 
   establish_connection(
