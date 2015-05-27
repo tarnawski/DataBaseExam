@@ -55,5 +55,6 @@
 
 <br>
 <%if current_user.admin? %>
-<%= link_to 'New Test', new_test_path, class: 'btn btn-primary' %>
+<%= link_to 'Cerate new Test', new_test_path, class: 'btn btn-primary' %>
+<%= link_to 'Show database connections', databases_path, class: 'btn btn-primary' %>
 <% end %>

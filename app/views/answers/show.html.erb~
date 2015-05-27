@@ -12,9 +12,10 @@
 <% end %>
 <br>
 Pracujesz w bazie danych:<br>
-<b><%=@current_database.name%></b>
 
-<br>
+<a target="DataBase Schema" href="#" onclick="window.open('<%=@current_database.image_path%>', 'SQLBox','menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=no,fullscreen=no,channelmode=no,width=800,height=500')">
+<b><%=@current_database.name%></b></a>
+<br><br><br>
 Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
 <div class="progress">
 <div class="progress-bar progress-bar-success" style="width: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%"></div>

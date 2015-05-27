@@ -29,19 +29,50 @@ class AnswersController < ApplicationController
   @points =0;
   @all_answers.each do |answer|
 if answer.answer!=''
-   
- begin
-zm1=TestDataBase.connection.exec_query (answer.answer)
-@zm1=zm1.to_hash
+
+if answer.answer.include?("create") || answer.answer.include?("insert") || answer.answer.include?("update") || answer.answer.include?("delete")
+
+  begin
+    zm1=TestDataBase.answer_sql(answer.answer)
+    @zm1=zm1.to_hash
   rescue 
-@zm1="null"
+    @zm1="null"
   end
+
+elsif
+
  begin
-zm2=TestDataBase.connection.exec_query (Question.find(answer.question_id).query)
-@zm2=zm2.to_hash
+    zm1=TestDataBase.connection.exec_query (answer.answer)
+    @zm1=zm1.to_hash
   rescue 
-@zm2="null"
+    @zm1="null"
   end
+
+end
+
+
+correct_query = Question.find(answer.question_id).query
+if correct_query.include?("create") || correct_query.include?("insert") || correct_query.include?("update") || correct_query.include?("delete")
+
+  begin
+    zm1=TestDataBase.answer_sql(correct_query)
+    @zm2=zm1.to_hash
+  rescue 
+    @zm2="null"
+  end
+
+elsif
+
+ begin
+    zm1=TestDataBase.connection.exec_query (correct_query)
+    @zm2=zm1.to_hash
+  rescue 
+    @zm2="null"
+  end
+
+end
+
+
 
 if (!@zm1.empty? && !@zm2.empty?)
 if(@zm1==@zm2)
@@ -90,7 +121,6 @@ if @sql.include?("create") || @sql.include?("insert") || @sql.include?("update")
 elsif
 
  begin
-    
     @zmienna=TestDataBase.connection.exec_query (@sql)
   rescue 
     @err = "In Your's query is something wrong, so can't execute"

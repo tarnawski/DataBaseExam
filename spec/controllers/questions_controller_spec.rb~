@@ -5,11 +5,7 @@ RSpec.describe QuestionsController, type: :controller do
   let(:valid_attributes) do
     {
       content: 'MyString',
-      answer_a: 'MyString',
-      answer_b: 'MyString',
-      answer_c: 'MyString',
-      answer_d: 'MyString',
-      a_is_correct: 'true',
+      query: 'MyString',
       test_id: test.id,
     }
   end
@@ -52,14 +48,14 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
     describe 'POST create' do
-        it 'redirects user to login page' do
+        it 'redirects user to test list' do
           post :create, { question: valid_attributes, test_id: test.to_param }
           expect(response).to redirect_to(tests_path)
        end
      end
 
    describe 'GET index' do
-        it 'redirects user to login page' do
+        it 'redirects user to test list' do
           get :index, { test_id: test.to_param }
           expect(response).to redirect_to(tests_path)
         end
@@ -67,7 +63,7 @@ RSpec.describe QuestionsController, type: :controller do
   
 
    describe 'GET show' do
-        it 'redirects user to login page' do
+        it 'redirects user to test list' do
           get :show, {id: valid_attributes, test_id: test.to_param }
           expect(response).to redirect_to(tests_path)
         end

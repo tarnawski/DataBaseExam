@@ -5,11 +5,7 @@ RSpec.describe QuestionsController, type: :controller do
   let(:valid_attributes) do
     {
       content: 'MyString',
-      answer_a: 'MyString',
-      answer_b: 'MyString',
-      answer_c: 'MyString',
-      answer_d: 'MyString',
-      a_is_correct: 'true',
+      query: 'MyString',
       test_id: test.id,
     }
   end

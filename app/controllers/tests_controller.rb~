@@ -19,13 +19,17 @@ class TestsController < ApplicationController
 
     def prepare_test
     @students_test = Test.find(params[:selected_test]);
+    tmp = @students_test.questions
+    if tmp.empty?
+    redirect_to  tests_path, notice: "I can't find question for this test" 
+    elsif
     if @students_test.number_of_questions == 0
     @students_questions = @students_test.questions
     
     elsif @students_test.number_of_questions != 0
     @students_questions = @students_test.questions.first(@students_test.number_of_questions)
     end
-   
+    
     @tab = []
 
 
@@ -41,10 +45,9 @@ class TestsController < ApplicationController
 
     session[:tab] = @tab
     session[:start] = Time.now
-    
-    
-    #session[:database] = @students_test.database
     redirect_to  new_answer_path
+    end
+
   end
 
 
