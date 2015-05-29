@@ -1,8 +1,6 @@
-<h1>New Question</h1>
-
+<h1>Edit Question</h1>
 <%= render 'form' %>
 
-<%= link_to 'Back',  test_path(:id =>test.id) %>
 
 <br>
 <h3><%=@err%></h3>
@@ -25,3 +23,11 @@
      <% end %>
 </tr>
 <%end%>
+
+<%= link_to 'Show',  test_question_path(question.test_id, question) %> |
+<%= link_to 'Back',  test_path(:id =>test.id) %>
+
+
+
+
+

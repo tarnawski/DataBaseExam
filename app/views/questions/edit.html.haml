@@ -1,0 +1,33 @@
+<h1>Edit Question</h1>
+
+= form_tag(edit_test_question_path, :method=>'get') do
+  .form-group
+    <h4>Treść zadania</h4>
+    =text_area_tag :content, @content,class: 'form-control'
+    <h4>Polecenie SQL</h4>
+    =text_area_tag :sql, @sql,class: 'form-control'
+  =button_tag 'Execute query', value: 'show', type: :submit, class: 'btn btn-primary'
+  =button_tag 'Update question', value: 'save', type: :submit, class: 'btn btn-success'
+  = link_to 'Back',  test_path(:id =>test.id), class: 'btn btn-default'
+
+%br
+
+%h3 
+  =@err
+
+-if @zmienna
+  -if @button == 'show'
+    %h3
+      Result for your query
+    %table.table
+      %tr
+      - @zmienna.columns.each do |columns|
+        %th= columns
+      - @zmienna.rows.each do |rows|
+        %tr
+        - rows.each do |tom|
+          %td= tom
+
+
+
+

@@ -32,6 +32,10 @@
 
   -if @button == 'check'
     -if @zmienna2
+      =@zmienna.to_hash
+      %br
+      %br
+      =@zmienna2.to_hash
       -if @zmienna.to_hash == @zmienna2.to_hash
         %h3 Correct
       -else

@@ -23,39 +23,97 @@ class QuestionsController < ApplicationController
 
 
   def new
-  end
 
+  DataBase.prepare_connection(Test.find(params[:test_id]).database)
 
-  def edit
-  end
-
-
-  def create
-
-    self.question = Question.new(question_params)
-    if question.save
-      test.questions << question
-      redirect_to test_question_url(test, question), notice: 'Question was successfully created.'
-    else
-      render action: 'new'
-    end
-end
+  @button = params[:button]
+  @content = params[:content]
   
- 
+  if params[:sql]
+  @sql = params[:sql]
+  
 
-  def update
+  if @button == 'show'
+  if @sql =~/create/i || @sql =~/insert/i || @sql =~/update/i || @sql =~/delete/i
 
- if user_signed_in?	
-    @question = Question.find(params[:id])
-    if @question.update(question_params)
-    redirect_to test_path(params[:test_id]), notice: "Question updated."
-    else
-     render action: 'edit'
-    end  
- else
-redirect_to new_user_session_url
-end
+
+    begin
+      @zmienna=DataBase.answer_sql(@sql)
+    rescue 
+      @err = "In Your's query is something wrong, so can't execute"
+    end
+
+  elsif
+
+    begin
+      @zmienna=DataBase.connection.exec_query (@sql)
+    rescue 
+      @err = "In Your's query is something wrong, so can't execute"
+    end
+
   end
+
+  elsif @button == 'save' 
+    self.question = Question.new()
+    question.content = @content
+    question.query = @sql
+    question.save
+    test.questions << question
+    render action: 'show'
+  end
+ end
+
+end
+
+
+  def edit 
+
+  DataBase.prepare_connection(Test.find(params[:test_id]).database)
+
+  tmp=Question.find(params[:id])
+  @sql=tmp.query
+  @content=tmp.content 
+
+  @button = params[:button]
+  
+  
+  if params[:sql]
+  @sql = params[:sql]
+  @content = params[:content]
+
+if @button == 'show'
+if @sql =~/create/i || @sql =~/insert/i || @sql =~/update/i || @sql =~/delete/i
+
+
+  begin
+    @zmienna=DataBase.answer_sql(@sql)
+  rescue 
+    @err = "In Your's query is something wrong, so can't execute"
+  end
+
+elsif
+
+ begin
+    @zmienna=DataBase.connection.exec_query (@sql)
+  rescue 
+    @err = "In Your's query is something wrong, so can't execute"
+  end
+
+end
+elsif @button == 'save' 
+ if user_signed_in?
+  question = Question.find(params[:id])
+  parametry=Hash["test_id"=>params[:test_id],"content"=>@content, "query" =>@sql]
+  question.update(parametry)
+  render action: 'show'
+
+ else
+   redirect_to new_user_session_url
+end
+end
+end
+end
+
 
 
   def destroy

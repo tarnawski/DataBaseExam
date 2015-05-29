@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: [:show, :edit, :update, :destroy]
-  before_action :admin!, only: [:show, :edit, :update, :destroy] 
+  before_action :admin!, only: [:index, :show, :edit, :update, :destroy] 
   expose(:test)
   expose(:results)
   expose(:result)

@@ -11,7 +11,7 @@ gem 'rspec-rails', '~> 3.0'
 #For RSpec  
 gem 'shoulda-matchers'
 gem "factory_girl_rails", "~> 4.0"
-
+gem 'mysql2', '~> 0.3.11'
 gem 'ar-octopus'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

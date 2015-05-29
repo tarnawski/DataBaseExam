@@ -30,7 +30,7 @@ class AnswersController < ApplicationController
   @all_answers.each do |answer|
 if answer.answer!=''
 
-if answer.answer.include?("create") || answer.answer.include?("insert") || answer.answer.include?("update") || answer.answer.include?("delete")
+if answer.answer =~/cerate/i  || answer.answer =~/insert/i  || answer.answer =~/update/i || answer.answer =~/delete/i 
 
   begin
     zm1=TestDataBase.answer_sql(answer.answer)
@@ -52,7 +52,7 @@ end
 
 
 correct_query = Question.find(answer.question_id).query
-if correct_query.include?("create") || correct_query.include?("insert") || correct_query.include?("update") || correct_query.include?("delete")
+if correct_query =~/create/i  || correct_query =~/insert/i  || correct_query =~/update/i  || correct_query =~/delete/i 
 
   begin
     zm1=TestDataBase.answer_sql(correct_query)
@@ -88,6 +88,16 @@ end
 end  
   end
 
+#Jeśli użytkownik jest w bazie to go usuwamy
+tmp=Result.where(student_id: current_user.id, test_id: @current_test.id )
+unless tmp.empty?
+tmp.destroy_all
+end
+results = Result.new
+results.student_id = current_user.id
+results.test_id = @current_test.id
+results.points = @points
+results.save
 
   end
 
@@ -109,8 +119,11 @@ end
     
     #Wczytanie bierzącej odpowiedzi
     @sql = @answer.answer
+if @sql =~/rollback/i || @sql =~/commit/i  || @sql =~/savepoint/i 
+redirect_to tests_path, notice: 'Test broken! Do not try this again!' 
+end
 
-if @sql.include?("create") || @sql.include?("insert") || @sql.include?("update") || @sql.include?("delete")
+if @sql =~/create/i || @sql =~/insert/i  || @sql =~/update/i  || @sql =~/delete/i 
 
   begin
     @zmienna=TestDataBase.answer_sql(@sql)

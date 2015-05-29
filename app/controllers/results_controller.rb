@@ -21,6 +21,8 @@ class ResultsController < ApplicationController
   # GET /results/1
   # GET /results/1.json
   def show
+  @student=params[:student]
+  @answers=Answer.where(student_id: @student); 
   end
 
   # GET /results/new

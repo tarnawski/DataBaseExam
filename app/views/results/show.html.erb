@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+ <div class="row">
+<div class="col-lg-2">
+<h3>Details</h3>
+<b>Student:</b><br>
+<%= User.find(@student).firstname + ' ' + User.find(test.user_id).lastname %>
+<br><br>
+<b>Poinst: </b>
+<%=@result.points%><br><br>
+<b>Mark: </b>
+<%=@result.mark%><br>
+<br><br>
+<%=link_to 'Back', test_results_path(:id =>test.id)%>
+</div>
+<div class="col-lg-10">
+<h3>Listing Questions</h3>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pytanie</th>
+      <th>Odpowiedź studenta</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answers.each do |answers| %>
+      <tr>
+        <td><%= answers.question_id %></td>
+        <td><%= Question.find(answers.question_id).content %></td>
+        <td><%= answers.answer %></td>
+    
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>

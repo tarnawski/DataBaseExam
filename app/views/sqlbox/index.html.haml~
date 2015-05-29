@@ -2,6 +2,9 @@
 
 
 %p
+  
+  %div.alert.alert-danger
+    The Alert tag was imported! 
   %h3
 
 
