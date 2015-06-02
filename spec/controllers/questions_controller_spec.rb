@@ -12,12 +12,7 @@ RSpec.describe QuestionsController, type: :controller do
 
 
   context 'user is not singed in' do
-    describe 'POST create' do
-        it 'redirects user to login page' do
-          post :create, { question: valid_attributes, test_id: test.to_param }
-          expect(response).to redirect_to(new_user_session_path)
-       end
-     end
+
 
    describe 'GET index' do
         it 'redirects user to login page' do
@@ -47,12 +42,7 @@ RSpec.describe QuestionsController, type: :controller do
     controller.stub(:authenticate_user!).and_return(user)
   end
 
-    describe 'POST create' do
-        it 'redirects user to test list' do
-          post :create, { question: valid_attributes, test_id: test.to_param }
-          expect(response).to redirect_to(tests_path)
-       end
-     end
+   
 
    describe 'GET index' do
         it 'redirects user to test list' do

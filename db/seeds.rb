@@ -1,27 +1,72 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#Prepare database V 1.1
+
+
+#####################################################################################################
+#Admin
+user = User.new
+user.email = 'admin@example.com'
+user.encrypted_password = 'xxxxxxx'
+user.password = 'valid_password'
+user.password_confirmation = 'valid_password'
+user.current_sign_in_at = '2015-02-27 20:29:27.899831'
+user.last_sign_in_at = '2015-02-26 20:29:27.899831'
+user.current_sign_in_ip = '192.168.0.0'
+user.last_sign_in_ip = '192.168.0.0'
+user.created_at = '2015-02-26 20:29:27.899831'
+user.updated_at = '2015-02-26 20:29:27.899831'
+user.firstname = 'Tomasz'
+user.lastname = 'Tarnawski'
+user.admin = 'TRUE'
+user.save!
+
+#Student
+user = User.new
+user.email = 'jolka@example.com'
+user.encrypted_password = 'xxxxxx'
+user.password = 'valid_password'
+user.password_confirmation = 'valid_password'
+user.current_sign_in_at = '2015-02-27 20:29:27.899831'
+user.last_sign_in_at = '2015-02-26 20:29:27.899831'
+user.current_sign_in_ip = '192.168.0.0'
+user.last_sign_in_ip = '192.168.0.0'
+user.created_at = '2015-02-26 20:29:27.899831'
+user.updated_at = '2015-02-26 20:29:27.899831'
+user.firstname = 'Jolanta'
+user.lastname = 'Nowakowska'
+user.admin = 'FALSE'
+user.save!
+
+
+
+#####################################################################################################
 
 test_list = [
-  [ "Nazwa testu", true, 1, 2, true, 0, true, true, 0, 0, 0 ],
+  [ "Kolokwium", true, 1, 2, true, true, 0, 0, 0,1 ],
 
 ]
 
-test_list.each do |name, available, user_id, number_of_questions, random, time, single_test, standard_score, bdb, bd, dost|
-  Test.create( name: name, available: available, user_id: user_id, number_of_questions: number_of_questions, random: random, time: time, single_test: single_test, standard_score: standard_score, bdb: bdb, bd: bd, dost: dost )
+test_list.each do |name, available, user_id, number_of_questions, random, standard_score, bdb, bd, dost, database|
+  Test.create( name: name, available: available, user_id: user_id, number_of_questions: number_of_questions, random: random, standard_score: standard_score, bdb: bdb, bd: bd, dost: dost, database: database )
 end
 
 ######################################################################################################
 question_list = [
-  [ 1, "Pytanie pierwsze", "Odp A do pyt 1", "Odp B do pyt 1", "Odp C do pyt 1", "Odp D do pyt 1", 1 ],
-  [ 1, "Pytanie drugie", "Odp A do pyt 2", "Odp B do pyt 2", "Odp C do pyt 2", "Odp D do pyt 2", 1 ],
-  [ 1, "Pytanie trzecie", "Odp A do pyt 3", "Odp B do pyt 3", "Odp C do pyt 3", "Odp D do pyt 3", 2 ]
+  [ 1, "Wypisz nazwe oraz adres wszystkich klientów", "select nazwa, adres from klienci"],
+  [ 1, "Wypisz liczbe klientów", "select count(*) from klienci"],
+  [ 1, "W tabeli ceny zmień cene cennikową na 20.5 dla produktu o id 100871", "update ceny set cena_cennikowa=20.5 where id_produktu=100871"]
 ]
 
-question_list.each do |test_id, content, answer_a, answer_b, answer_c, answer_d, correct|
-  Question.create( test_id: test_id, content: content, answer_a: answer_a, answer_b: answer_b, answer_c: answer_c, answer_d: answer_d, correct: correct )
+question_list.each do |test_id, content, query|
+  Question.create( test_id: test_id, content: content, query: query )
+end
+
+######################################################################################################
+
+database_list = [
+  [ "Baza testowa", "Testowa baza danych", "postgresql", "unicode", "localhost", 5, "postgres", "tarnawski", "test", "http://140dev.com/tutorial_images/twitter_database.png" ],
+
+]
+
+database_list.each do |name, comment, adapter, encoding, host, pool,   username, password, database, image_path|
+  Database.create( name: name, comment: comment, adapter: adapter, encoding: encoding, host: host, pool: pool, username: username, password: password, database: database, image_path: image_path )
 end

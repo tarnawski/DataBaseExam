@@ -15,7 +15,6 @@
   <%= question.query%>
 </p>
 
-
-
-<%= link_to 'Edit', edit_test_question_path(question.test_id, question) %>
-<%= link_to 'Back',  test_path(:id =>test.id) %>
+<br>
+<%= link_to 'Edit Question', edit_test_question_path(question.test_id, question), class: 'btn btn-success' %>
+<%= link_to 'Back',  test_path(:id =>test.id), class: 'btn btn-primary' %>

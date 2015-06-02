@@ -1,3 +1,7 @@
+- if notice
+  %div.alert.alert-info
+    %p#notice= notice
+
 <h1>New Question</h1>
 
 = form_tag(new_test_question_path, :method=>'get') do
@@ -8,7 +12,7 @@
     =text_area_tag :sql, @sql,class: 'form-control'
   =button_tag 'Execute query', value: 'show', type: :submit, class: 'btn btn-primary'
   =button_tag 'Save question', value: 'save', type: :submit, class: 'btn btn-success'
-  = link_to 'Back',  test_path(:id =>test.id), class: 'btn btn-success'
+  = link_to 'Back',  test_path(:id =>test.id), class: 'btn btn-default'
   
 %br
 

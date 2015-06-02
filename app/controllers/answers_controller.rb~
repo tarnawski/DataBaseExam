@@ -88,8 +88,9 @@ end
 end  
   end
 
+@mark = Answer.mark(@current_test.id,@points)
 #Jeśli użytkownik jest w bazie to go usuwamy
-tmp=Result.where(student_id: current_user.id)
+tmp=Result.where(student_id: current_user.id, test_id: @current_test.id )
 unless tmp.empty?
 tmp.destroy_all
 end

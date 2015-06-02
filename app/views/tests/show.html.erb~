@@ -29,7 +29,8 @@
 
 <p>
   <strong>DataBase:</strong>
-  <%= test.database %>
+  <%= Database.find(test.database).name %>
+
 </p>
 
 
@@ -53,9 +54,9 @@
   <%= test.dost %>
 </p>
 
-
-<%= link_to 'Edit this test', edit_test_path(@test) %> |
-<%= link_to 'Back to the test list', tests_path %>
+<br>
+<%= link_to 'Edit this test', edit_test_path(@test), class: 'btn btn-primary' %> 
+<%= link_to 'Back to the test list', tests_path, class: 'btn btn-primary' %>
 </div>
 <div class="col-lg-9">
 <h1>Listing Questions</h1>
@@ -84,7 +85,7 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'New Questions', new_test_question_path(:test_id => test.id) %>
+<%= link_to 'New Questions', new_test_question_path(:test_id => test.id), class: 'btn btn-primary' %>
 
 </div>
 </div>

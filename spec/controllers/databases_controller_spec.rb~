@@ -121,12 +121,6 @@ RSpec.describe DatabasesController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested database" do
-        database = Database.create! valid_attributes
-        put :update, {:id => database.to_param, :database => new_attributes}, valid_session
-        database.reload
-        skip("Add assertions for updated state")
-      end
 
       it "assigns the requested database as @database" do
         database = Database.create! valid_attributes

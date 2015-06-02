@@ -9,7 +9,8 @@
 <%=@result.points%><br><br>
 <b>Mark: </b>
 <%=@result.mark%><br>
-
+<br><br>
+<%=link_to 'Back', test_results_path(:id =>test.id)%>
 </div>
 <div class="col-lg-10">
 <h3>Listing Questions</h3>
@@ -38,5 +39,5 @@
 </table>
 
 <br>
-<%=link_to 'Back', test_results_path(:id =>test.id)%>
+
 </div>

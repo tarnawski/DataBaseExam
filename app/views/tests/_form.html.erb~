@@ -28,7 +28,7 @@
     <%= f.check_box :random %>
   </div>
 <div class="form-group">
-    <%= f.label :database %> Add new connection<br>
+    <%= f.label :database %> <%= link_to 'Add new connection', new_database_path %><br>
   <%= f.collection_select :database, Database.all, :id, :name, prompt: true %>
  
   </div>
@@ -49,6 +49,6 @@
     <%= f.number_field :dost, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit, class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -57,9 +57,12 @@ class QuestionsController < ApplicationController
     self.question = Question.new()
     question.content = @content
     question.query = @sql
-    question.save
+    if question.save
     test.questions << question
     render action: 'show'
+    else
+    render action: 'new'
+    end
   end
  end
 

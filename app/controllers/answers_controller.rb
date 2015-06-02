@@ -87,6 +87,8 @@ end
 
 end  
   end
+#Wywołanie funkcji wyznaczającej ocene
+@mark = Answer.mark(@current_test.id,@points)
 
 #Jeśli użytkownik jest w bazie to go usuwamy
 tmp=Result.where(student_id: current_user.id, test_id: @current_test.id )
@@ -97,6 +99,7 @@ results = Result.new
 results.student_id = current_user.id
 results.test_id = @current_test.id
 results.points = @points
+results.mark = @mark
 results.save
 
   end

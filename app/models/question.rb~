@@ -4,7 +4,7 @@ belongs_to :test
 
 end
 
-class TestDataBase < Question
+class DataBase < Question
 
 #Funkcja przygotowująca połączenie z odpowiednią bazą danych  
 def self.prepare_connection(number)
@@ -38,7 +38,7 @@ end
 	@table = query_in_tab[2]
 	end
 
-        @result = TestDataBase.connection.exec_query("select * from #{@table}")
+        @result = DataBase.connection.exec_query("select * from #{@table}")
 
         raise ActiveRecord::Rollback
 

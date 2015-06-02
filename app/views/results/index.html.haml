@@ -1,3 +1,7 @@
+- if notice
+  %div.alert.alert-info
+    %p#notice= notice
+
 %h1 Listing results
 
 %table.table
@@ -24,4 +28,4 @@
         
 %br
 
-= link_to 'Back', tests_path
+= link_to 'Back', tests_path , class: 'btn btn-primary'

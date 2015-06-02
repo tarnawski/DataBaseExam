@@ -11,44 +11,11 @@
 </p>
 
 <p>
-  <strong>Answer a:</strong>
-  <%= question.answer_a %>
+  <strong>Correct query:</strong>
+  <%= question.query%>
 </p>
 
-<p>
-  <strong>Answer b:</strong>
-  <%= question.answer_b %>
-</p>
 
-<p>
-  <strong>Answer c:</strong>
-  <%= question.answer_c %>
-</p>
 
-<p>
-  <strong>Answer d:</strong>
-  <%= question.answer_d %>
-</p>
-
-<p>
-  <strong>A is correct:</strong>
-  <%= question.a_is_correct %>
-</p>
-
-<p>
-  <strong>B is correct:</strong>
-  <%= question.b_is_correct %>
-</p>
-
-<p>
-  <strong>C is correct:</strong>
-  <%= question.c_is_correct %>
-</p>
-
-<p>
-  <strong>D is correct:</strong>
-  <%= question.d_is_correct %>
-</p>
-
-<%= link_to 'Edit', edit_test_question_path(question.test_id, question) %>
-<%= link_to 'Back',  test_path(:id =>test.id) %>
+<%= link_to 'Edit Question', edit_test_question_path(question.test_id, question), class: 'btn btn-success' %>
+<%= link_to 'Back',  test_path(:id =>test.id), class: 'btn btn-primary' %>

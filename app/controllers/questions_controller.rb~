@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
   
 
   if @button == 'show'
-  if @sql.include?("create") || @sql.include?("insert") || @sql.include?("update") || @sql.include?("delete")
+  if @sql =~/create/i || @sql =~/insert/i || @sql =~/update/i || @sql =~/delete/i
 
 
     begin
@@ -57,9 +57,12 @@ class QuestionsController < ApplicationController
     self.question = Question.new()
     question.content = @content
     question.query = @sql
-    question.save
+    if question.save
     test.questions << question
     render action: 'show'
+    else
+    render action: 'new', notice: "Upss"
+    end
   end
  end
 
@@ -82,7 +85,7 @@ end
   @content = params[:content]
 
 if @button == 'show'
-if @sql.include?("create") || @sql.include?("insert") || @sql.include?("update") || @sql.include?("delete")
+if @sql =~/create/i || @sql =~/insert/i || @sql =~/update/i || @sql =~/delete/i
 
 
   begin
