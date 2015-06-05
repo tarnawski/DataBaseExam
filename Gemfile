@@ -13,7 +13,7 @@ gem 'shoulda-matchers'
 gem "factory_girl_rails", "~> 4.0"
 gem 'mysql2', '~> 0.3.11'
 gem 'ar-octopus'
-
+gem 'database_cleaner'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record

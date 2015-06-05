@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update]
   before_action :authenticate_user!, only: [:index, :new, :show, :edit, :update]
-  before_action :acces!, only: [:index, :new, :show, :edit, :update]
+  before_action :acces!, only: [:index, :new, :show, :edit, :update, :prepare]
 
   expose(:student)
   expose(:answers)
@@ -117,7 +117,7 @@ results.save
     #Wczytanie dbierzącego pytania
     @answer = Answer.find(params[:id])
     
-    #Przekazanie ilości pytań na które udzielono odpowiedzi
+    #Przekazanie ilości pytań na które nie udzielono odpowiedzi
     @not_checked = Answer.where(answer:'',student_id: current_user.id).count
     
     #Wczytanie bierzącej odpowiedzi
@@ -157,6 +157,7 @@ end
     end
 
     #Przygotowanie tabeli Answers
+
     @get_session.each do |tab|
     @answer = Answer.new()
     @quest = Question.find(tab)

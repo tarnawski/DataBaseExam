@@ -16,7 +16,7 @@ RSpec.describe "databases/index", type: :view do
         :image_path => "Image Path"
       ),
       Database.create!(
-        :name => "Name2",
+        :name => "Name",
         :comment => "MyText",
         :adapter => "Adapter",
         :encoding => "Encoding",

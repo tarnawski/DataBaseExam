@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Your results...</h1>
+
+
+<br>
+<h2>Points: <%= @points %>  
+<br>
+Your mark is: <%= @mark %>  
+
+</h2>
+
+<%=link_to 'Back', tests_path %>
+
