@@ -8,11 +8,11 @@ connection: &connection
 
 development:
   <<: *connection
-  database: workshops_development
+  database: nti
 
 test: &test
   <<: *connection
-  database: workshops_test
+  database: nti
 
 
 testowa:
