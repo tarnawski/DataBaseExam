@@ -1,4 +1,4 @@
-= form_for [test, question, result] do |f|
+= form_for [test, result] do |f|
   - if result.errors.any?
     #error_explanation
       %h2= "#{pluralize(result.errors.count, "error")} prohibited this question from being saved:"
@@ -8,11 +8,11 @@
 
 
   .form-group
-    = f.label :points
+    = f.label :Punkty
     = f.number_field :points
   .form-group
-    = f.label :mark
-    = f.text_field :mark
+    = f.label :Ocena
+    = f.select :mark, [2, 3, 3.5, 4]
 
 
   = f.submit 'Save'

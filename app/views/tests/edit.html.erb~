@@ -1,6 +1,33 @@
+<div class="row">
+<div class="col-lg-3">
+<br><br>
+<b>Available</b><br>
+Określa czy test na być widoczny dla studentów na liście testów.
+<br><br>
+<b>Number of questions</b><br>
+Jest to liczba pytań z przypisanych do testu, z których zostanie ułożony test.
+<br><br>
+<b>Random</b><br>
+Określa czy pytania do testu zostaną wylosowane z puli przypisanych pytań. 
+<br><br>
+<b>Database</b><br>
+Baza danych, która ma zostać przypisana do testu. 
+<br><br>
+<b>Standard score</b><br>
+Określa czy test na być oceniony według standardowych kryteriów:<br>
+95-100% - ocena 5 (bdb)<br>
+75-94% - ocena 4 (db)<br>
+50-74% - ocena 3 (dost)
+<br><br>
+<b>Bdb, Db, Dost</b><br>
+Określają liczbe punktów potrzebnych do uzyskania odpowiadającej oceny jeśli opcja Standard score <u>nie</u> jest zaznaczona.
+<br><br>
+</div>
+<div class="col-lg-9">
 <h1>Editing Test</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', @test %> |
 <%= link_to 'Back', tests_path %>
+</div>

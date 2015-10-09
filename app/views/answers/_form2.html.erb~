@@ -24,7 +24,7 @@
 
 
 
-    <button type="f.submit" class="btn btn-primary">Reload result and save answer</button>
+    <button type="f.submit" class="btn btn-primary">Wykonaj zapytanie</button>
   </div>
 <% end %>
 

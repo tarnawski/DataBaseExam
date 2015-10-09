@@ -7,36 +7,36 @@
           %li= msg
 
   .field
-    = f.label :name
+    = f.label :Nazwa
     = f.text_field :name, class: 'form-control'
   .field
-    = f.label :comment
+    = f.label :Komentarz
     = f.text_area :comment, class: 'form-control'
   .field
-    = f.label :adapter
+    = f.label :Adapter
     = f.text_field :adapter, class: 'form-control'
   .field
-    = f.label :encoding
+    = f.label :Kodowanie
     = f.text_field :encoding, class: 'form-control'
   .field
-    = f.label :host
+    = f.label :Host
     = f.text_field :host, class: 'form-control'
   .field
-    = f.label :pool
+    = f.label :Pool
     = f.number_field :pool, class: 'form-control'
   .field
-    = f.label :username
+    = f.label :Użytkownik
     = f.text_field :username, class: 'form-control'
   .field
-    = f.label :password
+    = f.label :Hasło
     = f.text_field :password, class: 'form-control'
   .field
-    = f.label :database
+    = f.label :Baza
     = f.text_field :database, class: 'form-control'
   .field
-    = f.label :image
-    = f.file_field :image, class: 'form-control'
+    = f.label :Schemat
+    = f.file_field :image
   .actions
     <br>
-    = f.submit 'Save'
+    = f.submit 'Zapisz', class: 'btn btn-primary'
 <br>

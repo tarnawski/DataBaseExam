@@ -2,14 +2,14 @@
   %div.alert.alert-info
     %p#notice= notice
 
-%h1 Listing results
+%h1 Lista wyników
 
 %table.table
   %thead
     %tr
       %th Student
-      %th Points
-      %th Mark
+      %th Punkty
+      %th Ocena
       %th
       %th
       %th
@@ -22,10 +22,10 @@
         %td= result.mark
         %td= result.created_at
 
-        %td= link_to 'Show', test_result_path(result.test_id, result, :student => result.student_id)
-        %td= link_to 'Edit', edit_test_result_path(result.test_id, result)
-        %td= link_to 'Destroy', test_result_path(result.test_id, result), :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Pokaż', test_result_path(result.test_id, result, :student => result.student_id), class: 'btn btn-success btn-xs'
+        %td= link_to 'Edytuj', edit_test_result_path(result.test_id, result), class: 'btn btn-warning btn-xs'
+        %td= link_to 'Usuń', test_result_path(result.test_id, result), :method => :delete, :data => { :confirm => 'Czy napewno chcesz usunąć wynik?' }, class: 'btn btn-danger btn-xs'
         
 %br
 
-= link_to 'Back', tests_path , class: 'btn btn-primary'
+= link_to 'Wróć', tests_path , class: 'btn btn-primary'

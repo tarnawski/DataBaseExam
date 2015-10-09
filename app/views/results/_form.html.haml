@@ -8,11 +8,11 @@
 
 
   .form-group
-    = f.label :points
+    = f.label :Punkty
     = f.number_field :points
   .form-group
-    = f.label :mark
-    = f.text_field :mark
+    = f.label :Ocena
+    = f.select :mark, [2.0, 3.0, 3.5, 4.0, 4.5, 5.0]
 
 
   = f.submit 'Save'

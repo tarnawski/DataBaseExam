@@ -2,6 +2,5 @@
 
 = render 'form'
 
-= link_to 'Show', @result
-\|
-= link_to 'Back', results_path
+
+= link_to 'Wróć', test_results_path(:id =>test.id)

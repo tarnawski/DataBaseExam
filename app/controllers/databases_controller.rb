@@ -32,7 +32,7 @@ class DatabasesController < ApplicationController
 
   def create
     @database = Database.create(database_params)
-    redirect_to @database, notice: 'Dane połączenia zastały zapisane.' 
+    redirect_to databases_url, notice: 'Dane połączenia zastały zapisane.' 
   end
 
   # PATCH/PUT /databases/1

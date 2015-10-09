@@ -28,7 +28,7 @@
           -if user_signed_in?
             = link_to('Logout', destroy_user_session_path,  :method=>'delete')
             -if current_user.try(:admin?)
-              <a target="SQLBox" href="http://localhost:3000/sqlbox/index" onclick="window.open('http://localhost:3000/sqlbox/index', 'SQLBox','menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=no,fullscreen=no,channelmode=no,width=800,height=500')">SQLBox</a>
+              | <a target="SQLBox" href="http://localhost:3000/sqlbox/index" onclick="window.open('http://localhost:3000/sqlbox/index', 'SQLBox','menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=no,fullscreen=no,channelmode=no,width=800,height=500')">SQLBox</a>
           -else
             = link_to('Login', new_user_session_path)
             or 

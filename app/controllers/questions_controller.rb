@@ -13,11 +13,6 @@ class QuestionsController < ApplicationController
   end
   end
 
-
-  def index
-  end
-
-
   def show
   end
 
@@ -59,7 +54,7 @@ class QuestionsController < ApplicationController
     question.query = @sql
     if question.save
     test.questions << question
-    render action: 'show'
+    redirect_to test_path(params[:test_id]), notice: 'Zadanie zostało dodane'
     else
     render action: 'new'
     end
@@ -108,7 +103,7 @@ elsif @button == 'save'
   question = Question.find(params[:id])
   parametry=Hash["test_id"=>params[:test_id],"content"=>@content, "query" =>@sql]
   question.update(parametry)
-  render action: 'show'
+  redirect_to test_path(params[:test_id]), notice: 'zadanie zostało pomyślne zmienione.'
 
  else
    redirect_to new_user_session_url

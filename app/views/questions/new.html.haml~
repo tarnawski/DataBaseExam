@@ -1,8 +1,4 @@
-- if notice
-  %div.alert.alert-info
-    %p#notice= notice
-
-<h1>New Question</h1>
+<h1>Dodaj pytanie:</h1>
 
 = form_tag(new_test_question_path, :method=>'get') do
   .form-group

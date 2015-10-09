@@ -1,6 +1,6 @@
-<h1>Edit Question</h1>
+<h1>Edytuj pytanie:</h1>
 
-= form_tag(new_test_question_path, :method=>'get') do
+= form_tag(edit_test_question_path, :method=>'get') do
   .form-group
     <h4>Treść zadania</h4>
     =text_area_tag :content, @content,class: 'form-control'

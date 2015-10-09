@@ -4,6 +4,8 @@
 <% end %>
 <br> Ilość:
 <%= @tab.length %>
+<br> Aktualny:
+<%= @answer.question_id%>
 
 <%= render 'form2' %>
 

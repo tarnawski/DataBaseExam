@@ -1,6 +1,6 @@
  <div class="row">
 <div class="col-lg-2">
-<h2>Questions</h2>
+<h2>Lista pytań:</h2>
 
 <% @tab.each do |tab| %>
 <% if (tab.answer=='')%>
@@ -11,29 +11,29 @@
 <%= link_to Question.find(tab.question_id).content, answer_path(tab.id) %> <br>
 <% end %>
 <br>
-Pracujesz w bazie danych:<br>
 
+<b>Schemat bazy danych:</b><br>
 <a target="DataBase Schema" href="#" onclick="window.open('<%=@current_database.image.url%>', 'SQLBox','menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=no,fullscreen=no,channelmode=no,width=800,height=500')">
 <%= image_tag @current_database.image.url(:thumb)%>
-<b>Kliknij, aby powiększyć</b></a>
+<br>
+Kliknij, aby powiększyć</a>
 <br><br>
-Progress: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
+
+Postęp: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%
 <div class="progress">
-<div class="progress-bar progress-bar-success" style="width: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%"></div>
+<div class="progress-bar progress-bar-warning" style="width: <%= ((@tab.length-@not_checked)*100)/@tab.length %>%"></div>
 </div> 
 <br>
-<%= link_to 'Finish test and show results', answers_path, class: 'btn btn-danger' %>
+<%= link_to 'Zakończ test i pokaż wynik', answers_path, class: 'btn btn-danger' %>
 <br><br><br>
-<h4>You solve already:<br> 
+<h4>Czas od rozpoczęcia:<br> 
 <%=distance_of_time_in_words_to_now(session[:start])%></h4>
 
-(Time is updated when you save ansver or <a href="javascript:location.reload()">refresh </a>page)
 </div>
 <div class="col-lg-1">
 
 </div>
 <div class="col-lg-9">
-<h2>Current question (ID: <%= @answer.question_id%>)</h2>
 <%= render 'form2' %>
 <br>
 <h3><%=@err%></h3>

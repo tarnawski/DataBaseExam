@@ -1,7 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%if notice%>
+<div class="alert alert-info"><p id="notice"><%= notice %></p></div>
+    <% end %>
+
  <div class="row">
 <div class="col-lg-3">
-<h1>Test details</h1>
+<h1>Szczegóły testu</h1>
 <p>
   <strong>Name:</strong>
   <%= test.name %>
@@ -13,29 +16,29 @@
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>Użytkownik:</strong>
   <%= User.find(test.user_id).firstname + ' ' + User.find(test.user_id).lastname %>
 </p>
 
 <p>
-  <strong>Number of questions:</strong>
+  <strong>Liczba pytań:</strong>
   <%= test.number_of_questions %>
 </p>
 
 <p>
-  <strong>Random:</strong>
+  <strong>Losowość pytań:</strong>
   <%= test.random %>
 </p>
 
 <p>
-  <strong>DataBase:</strong>
+  <strong>Baza danych:</strong>
   <%= Database.find(test.database).name %>
 
 </p>
 
 
 <p>
-  <strong>Standard score:</strong>
+  <strong>Standardowe ocenianie:</strong>
   <%= test.standard_score %>
 </p>
 
@@ -55,18 +58,17 @@
 </p>
 
 <br>
-<%= link_to 'Edit this test', edit_test_path(@test), class: 'btn btn-primary' %> 
-<%= link_to 'Back to the test list', tests_path, class: 'btn btn-primary' %>
+<%= link_to 'Edytuj ten test', edit_test_path(@test), class: 'btn btn-primary' %> 
+<%= link_to 'Wróć do listy testów', tests_path, class: 'btn btn-primary' %>
 </div>
 <div class="col-lg-9">
-<h1>Listing Questions</h1>
+<h1>Lista pytań</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Test</th>
-      <th>Content</th>
-      <th>Correct query</th>
+      <th>Polecenie</th>
+      <th>Polecenie SQL</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -74,18 +76,16 @@
   <tbody>
     <% test.questions.each do |question| %>
       <tr>
-        <td><%= question.test_id %></td>
         <td><%= question.content %></td>
         <td><%= question.query %></td>
-        <td><%= link_to 'Show', test_question_path(question.test_id, question)%></td>
-        <td><%= link_to 'Edit', edit_test_question_path(question.test_id, question) %></td>
-        <td><%= link_to 'Destroy', test_question_path(question.test_id, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edytuj', edit_test_question_path(question.test_id, question), class: 'btn btn-warning btn-xs' %></td>
+        <td><%= link_to 'Usuń', test_question_path(question.test_id, question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New Questions', new_test_question_path(:test_id => test.id), class: 'btn btn-primary' %>
+<%= link_to 'Nowe pytanie', new_test_question_path(:test_id => test.id), class: 'btn btn-primary' %>
 
 </div>
 </div>

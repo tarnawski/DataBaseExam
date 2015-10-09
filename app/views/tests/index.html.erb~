@@ -1,19 +1,18 @@
-
-<p id="notice"><div class="alert alert-info"><%= notice %></div></p>
-
-<h1>Listing Tests</h1>
+<%if notice%>
+<div class="alert alert-info"><p id="notice"><%= notice %></p></div>
+<% end %>
+<h1>Lista testów</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Teacher</th>
-      <th>Name</th>
-      <th>Available</th>
-      <th>Number of questions</th>
-      <th>Random</th>
-      <th>DataBase</th>
-
-      <th>Standard score</th>
+      <th>Prowadzący</th>
+      <th>Nazwa</th>
+      <th>Dostępność</th>
+      <th>Liczba pytań</th>
+      <th>Losowość</th>
+      <th>Baza</th>
+      <th>Standardowe ocenianie</th>
       <th>Bdb</th>
       <th>Bd</th>
       <th>Dost</th>
@@ -42,12 +41,12 @@
         <td><%= test.bd %></td>
         <td><%= test.dost %></td>
         <%if current_user.admin? %>
-        <td><%= link_to 'Show', test %></td>
-        <td><%= link_to 'Edit', edit_test_path(test) %></td>
-        <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Results', test_results_path(test) %></td>
+        <td><%= link_to 'Pokaż', test, class: 'btn btn-success btn-xs' %></td>
+        <td><%= link_to 'Edytuj', edit_test_path(test), class: 'btn btn-warning btn-xs' %></td>
+        <td><%= link_to 'Usuń', test, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć test?' }, class: 'btn btn-danger btn-xs' %></td>
+        <td><%= link_to 'Wyniki', test_results_path(test), class: 'btn btn-primary btn-xs' %></td>
         <% end %>
-        <td><%= link_to 'Execute', :action => "prepare_test",:id =>test.id, :selected_test => test.id%></td>
+        <td><%= link_to 'Rozwiąż', :action => "prepare_test", class: 'btn btn-primary btn-xs' %></td>
         <% end %>
       </tr>
     <% end %>
@@ -56,6 +55,6 @@
 
 <br>
 <%if current_user.admin? %>
-<%= link_to 'Create new Test', new_test_path, class: 'btn btn-primary' %>
-<%= link_to 'Show database connections', databases_path, class: 'btn btn-primary' %>
+<%= link_to 'Nowy test', new_test_path, class: 'btn btn-primary' %>
+<%= link_to 'Połączenia z bazami danych', databases_path, class: 'btn btn-primary' %>
 <% end %>

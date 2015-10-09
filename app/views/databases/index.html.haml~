@@ -1,18 +1,21 @@
-%h1 Listing databases
+- if notice
+  %div.alert.alert-info
+    %p#notice= notice
+
+%h1 Lista połączeń z bazami danych
 
 %table.table
   %thead
     %tr
-      %th Name
-      %th Comment
+      %th Nazwa
+      %th Komentarz
       %th Adapter
-      %th Encoding
+      %th Kodowanie
       %th Host
       %th Pool
-      %th Username
-      %th Password
-      %th Database
-      %th Image path
+      %th Użytkownik
+      %th Hasło
+      %th Baza
       %th
       %th
       %th
@@ -29,12 +32,12 @@
         %td= database.username
         %td= database.password
         %td= database.database
-        %td= database.image.url
 
-        %td= link_to 'Edit', edit_database_path(database)
-        %td= link_to 'Destroy', database, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+        %td= link_to 'Edytuj', edit_database_path(database)
+        %td= link_to 'Usuń', database, :method => :delete, :data => { :confirm => 'Czy napewno chcesz usunąć to połączenie?' }
 
 %br
 
-= link_to 'Create new connection', new_database_path, class: 'btn btn-primary'
-= link_to 'Back to the test list', tests_path, class: 'btn btn-primary'
+= link_to 'Nowe połączenie', new_database_path, class: 'btn btn-primary'
+
