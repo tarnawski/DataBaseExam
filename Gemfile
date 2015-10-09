@@ -18,7 +18,8 @@ gem 'database_cleaner'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-
+gem "paperclip", "~> 4.3"
+gem "mini_magick"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

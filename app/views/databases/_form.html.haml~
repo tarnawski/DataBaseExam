@@ -34,8 +34,9 @@
     = f.label :database
     = f.text_field :database, class: 'form-control'
   .field
-    = f.label :image_path
-    = f.text_field :image_path, class: 'form-control'
+    = f.label :image
+    = f.form_field :image, class: 'form-control'
   .actions
+    <br>
     = f.submit 'Save'
 <br>

@@ -3,21 +3,19 @@ class DatabasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
   before_action :admin!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
 
+  # Sprawdzenie czy użytkownik jest administratorem
   def admin!
   unless current_user.admin?
-    redirect_to tests_path,
-      flash: { error: 'Nie masz uprawnień do przeglądania tej strony' }
+    redirect_to tests_path, notice: 'Nie masz uprawnień do przeglądania tej strony!' 
   end
   end
 
   # GET /databases
-  # GET /databases.json
   def index
     @databases = Database.all
   end
 
   # GET /databases/1
-  # GET /databases/1.json
   def show
   end
 
@@ -31,43 +29,26 @@ class DatabasesController < ApplicationController
   end
 
   # POST /databases
-  # POST /databases.json
-  def create
-    @database = Database.new(database_params)
 
-    respond_to do |format|
-      if @database.save
-        format.html { redirect_to @database, notice: 'Database was successfully created.' }
-        format.json { render :show, status: :created, location: @database }
-      else
-        format.html { render :new }
-        format.json { render json: @database.errors, status: :unprocessable_entity }
-      end
-    end
+  def create
+    @database = Database.create(database_params)
+    redirect_to @database, notice: 'Dane połączenia zastały zapisane.' 
   end
 
   # PATCH/PUT /databases/1
-  # PATCH/PUT /databases/1.json
   def update
-    respond_to do |format|
-      if @database.update(database_params)
-        format.html { redirect_to @database, notice: 'Database was successfully updated.' }
-        format.json { render :show, status: :ok, location: @database }
-      else
-        format.html { render :edit }
-        format.json { render json: @database.errors, status: :unprocessable_entity }
-      end
+    if @database.update(database_params)
+      redirect_to @database, notice: 'Dane połączenia zastały aktualizowane.' 
+    else
+      render :edit 
     end
   end
 
   # DELETE /databases/1
-  # DELETE /databases/1.json
   def destroy
     @database.destroy
-    respond_to do |format|
-      format.html { redirect_to databases_url, notice: 'Database was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to databases_url, notice: 'Dane połączenia zastały usunięte.' 
+
   end
 
   private
@@ -78,6 +59,6 @@ class DatabasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def database_params
-      params.require(:database).permit(:name, :comment, :adapter, :encoding, :host, :pool, :username, :password, :database, :image_path)
+      params.require(:database).permit(:name, :comment, :adapter, :encoding, :host, :pool, :username, :password, :database, :image)
     end
 end

@@ -29,7 +29,7 @@
         %td= database.username
         %td= database.password
         %td= database.database
-        %td= database.image_path
+        %td= database.image.url
 
         %td= link_to 'Edit', edit_database_path(database)
         %td= link_to 'Destroy', database, :method => :delete, :data => { :confirm => 'Are you sure?' }
@@ -37,4 +37,4 @@
 %br
 
 = link_to 'Create new connection', new_database_path, class: 'btn btn-primary'
-= link_to 'Back to test list', tests_path, class: 'btn btn-primary'
+= link_to 'Back to the test list', tests_path, class: 'btn btn-primary'
