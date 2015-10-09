@@ -7,48 +7,40 @@ class AnswersController < ApplicationController
   expose(:answers)
   expose(:answer)
 
-
-
-
   #Ustalenie testu oraz bazy danych i sprawdzanie czy użytkownik ma dostęp do pytania
   def acces!
-     @get_session = session[:tab]
-     @first_question_in_session = Question.find(@get_session[0])
-     @current_test = Test.find(@first_question_in_session.test_id)
-     @current_database = Database.find(@current_test.database)
+    @get_session = session[:tab]
+    @first_question_in_session = Question.find(@get_session[0])
+    @current_test = Test.find(@first_question_in_session.test_id)
+    @current_database = Database.find(@current_test.database)
 
-  unless (current_user.admin?) || (!current_user.admin?) && (@current_test.available)
-    redirect_to tests_path,
+    unless (current_user.admin?) || (!current_user.admin?) && (@current_test.available)
+      redirect_to tests_path,
       flash: { error: 'You are not allowed to edit this question.' }
-  end
+    end
   end
 
 
   def index
-  @all_answers = Answer.where(student_id: current_user.id).order("id")
-  @points =0;
-  @all_answers.each do |answer|
-if answer.answer!=''
-
-if answer.answer =~/cerate/i  || answer.answer =~/insert/i  || answer.answer =~/update/i || answer.answer =~/delete/i 
-
-  begin
-    zm1=TestDataBase.answer_sql(answer.answer)
-    @zm1=zm1.to_hash
-  rescue 
-    @zm1="null"
-  end
-
-elsif
-
- begin
-    zm1=TestDataBase.connection.exec_query (answer.answer)
-    @zm1=zm1.to_hash
-  rescue 
-    @zm1="null"
-  end
-
-end
+    @all_answers = Answer.where(student_id: current_user.id).order("id")
+    @points =0;
+    @all_answers.each do |answer|
+    if answer.answer!=''
+      if answer.answer =~/cerate/i  || answer.answer =~/insert/i  || answer.answer =~/update/i || answer.answer =~/delete/i 
+        begin
+          zm1=TestDataBase.answer_sql(answer.answer)
+          @zm1=zm1.to_hash
+        rescue 
+          @zm1="null"
+        end
+      elsif
+        begin
+          zm1=TestDataBase.connection.exec_query (answer.answer)
+          @zm1=zm1.to_hash
+        rescue 
+          @zm1="null"
+        end
+    end
 
 
 correct_query = Question.find(answer.question_id).query

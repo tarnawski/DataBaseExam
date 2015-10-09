@@ -17,7 +17,7 @@ class AnswersController < ApplicationController
      @current_test = Test.find(@first_question_in_session.test_id)
      @current_database = Database.find(@current_test.database)
 
-  unless (current_user.admin?) || ((!current_user.admin?) && (@current_test.available))
+  unless (current_user.admin?) || (!current_user.admin?) && (@current_test.available)
     redirect_to tests_path,
       flash: { error: 'You are not allowed to edit this question.' }
   end

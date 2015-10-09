@@ -9,19 +9,20 @@ class TestsController < ApplicationController
     expose(:result) { Result.new }
 
   def admin!
-  unless current_user.admin?
+
+  unless current_user
     redirect_to tests_path,
       flash: { error: 'You are not allowed to edit this product.' }
   end
   end
-
+ 
 
 
     def prepare_test
     @students_test = Test.find(params[:selected_test]);
     tmp = @students_test.questions
     if tmp.empty?
-    redirect_to  tests_path, notice: "I can't find question for this test" 
+    redirect_to  tests_path, notice: "I can't find question for this test!" 
     elsif
     if @students_test.number_of_questions == 0
     @students_questions = @students_test.questions

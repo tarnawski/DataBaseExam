@@ -1,5 +1,14 @@
 class DatabasesController < ApplicationController
   before_action :set_database, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
+  before_action :admin!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
+
+  def admin!
+  unless current_user.admin?
+    redirect_to tests_path,
+      flash: { error: 'Nie masz uprawnień do przeglądania tej strony' }
+  end
+  end
 
   # GET /databases
   # GET /databases.json

@@ -1,6 +1,0 @@
-- Jeśli test ma param. avaible=false nie pozwól, aby użytkownik (admin=false) go wykonał
-- Jeśli test ma param. single_test=true nie pozwól aby kilka odpowiedzi było prawdziwych
-
-- zmienić design
-
- 

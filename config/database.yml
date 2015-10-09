@@ -8,18 +8,9 @@ connection: &connection
 
 development:
   <<: *connection
-  database: nti
+  database: databaseexam
 
 test: &test
   <<: *connection
-  database: nti
+  database: databaseexam_test
 
-
-testowa:
-  adapter: postgresql
-  encoding: unicode
-  host:     localhost
-  pool: 5
-  username: postgres
-  password: tarnawski
-  database: test
