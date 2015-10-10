@@ -14,25 +14,47 @@
       .container-fluid
         .navbar-header
           %span.navbar-brand
-            -if user_signed_in?
-              Witaj, 
-              = link_to(current_user.firstname+' '+ current_user.lastname, edit_user_registration_path)
-             
-              
-              (
-              = current_user.email
-              )
-            -else
-              Witaj, nie jesteś zalogowany
-        %p.nav.navbar-brand.navbar-right
+            DBExam
+        %ul.nav.navbar-nav
           -if user_signed_in?
-            = link_to('Wyloguj', destroy_user_session_path,  :method=>'delete')
-            -if current_user.try(:admin?)
-              | <a target="SQLBox" href="http://localhost:3000/sqlbox/index" onclick="window.open('http://localhost:3000/sqlbox/index', 'SQLBox','menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=no,fullscreen=no,channelmode=no,width=800,height=500')">SQLBox</a>
-          -else
-            = link_to('Zaloguj się', new_user_session_path)
-            or 
-            = link_to('Zarejestruj się ', new_user_registration_path)
+            %li.dropdown
+              %a{:href=>"#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown"}Testy<b class="caret"></b>
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "/tests"} Wszystkie testy
+                %li
+                  %a{:href => "/tests"} Moje testy
+                %li
+                  %a{:href => "/tests/new"} Dodaj test
+            %li.dropdown
+              %a{:href=>"#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown"}Bazy Danych<b class="caret"></b>
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "/databases"} Pokaż połączenia
+                %li
+                  %a{:href => "/databases/new"} Dodaj połączenie
+            %li
+              %a{:href => "/sqlbox/index"} SQLBox	 
+
+        %p.nav.navbar-brand.navbar-right
+          %ul.nav.navbar-nav.navbar-right
+            -if user_signed_in?
+              %li
+                = link_to(current_user.firstname+' '+ current_user.lastname, edit_user_registration_path)
+              %li.dropdown
+                %a{:href=>"#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown"}Konto<b class="caret"></b>
+                %ul.dropdown-menu
+                  %li
+                    = link_to("Profil", edit_user_registration_path)
+                  %li
+                    = link_to('Wyloguj', destroy_user_session_path,  :method=>'delete')
+
+            -else
+              = link_to('Zaloguj się', new_user_session_path)
+              or 
+              = link_to('Zarejestruj się ', new_user_registration_path)
+             
+          
     .container-fluid
       .row
         .col-lg-12
