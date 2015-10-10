@@ -34,16 +34,16 @@ class QuestionsController < ApplicationController
 
     begin
       @zmienna=DataBase.answer_sql(@sql)
-    rescue 
-      @err = "In Your's query is something wrong, so can't execute"
+    rescue ActiveRecord::StatementInvalid => exception
+	@err = exception.message
     end
 
   elsif
 
     begin
       @zmienna=DataBase.connection.exec_query (@sql)
-    rescue 
-      @err = "In Your's query is something wrong, so can't execute"
+    rescue ActiveRecord::StatementInvalid => exception
+	@err = exception.message
     end
 
   end
@@ -85,16 +85,16 @@ if @sql =~/create/i || @sql =~/insert/i || @sql =~/update/i || @sql =~/delete/i
 
   begin
     @zmienna=DataBase.answer_sql(@sql)
-  rescue 
-    @err = "In Your's query is something wrong, so can't execute"
+  rescue ActiveRecord::StatementInvalid => exception
+	@err = exception.message
   end
 
 elsif
 
  begin
     @zmienna=DataBase.connection.exec_query (@sql)
-  rescue 
-    @err = "In Your's query is something wrong, so can't execute"
+  rescue ActiveRecord::StatementInvalid => exception
+	@err = exception.message
   end
 
 end

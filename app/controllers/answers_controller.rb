@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
 
     unless (current_user.admin?) || (!current_user.admin?) && (@current_test.available)
       redirect_to tests_path,
-      flash: { error: 'You are not allowed to edit this question.' }
+      flash: { error: 'Nie masz uprawnień do przedlądanie tej strony.' }
     end
   end
 
@@ -101,7 +101,7 @@ class AnswersController < ApplicationController
     @sql = @answer.answer
     
     if @sql =~/rollback/i || @sql =~/commit/i  || @sql =~/savepoint/i 
-      redirect_to tests_path, notice: 'Test broken! Do not try this again!' 
+      redirect_to tests_path, notice: 'Test zakończony. Zarejestrowano próbe ataku SQL Injection ' 
     end
 
     if @sql =~/create/i || @sql =~/insert/i  || @sql =~/update/i  || @sql =~/delete/i 

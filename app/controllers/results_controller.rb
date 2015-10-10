@@ -1,5 +1,6 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy, :create]
   before_action :admin!, only: [:index, :show, :edit, :update, :destroy] 
   expose(:test)
   expose(:results)
@@ -8,7 +9,7 @@ class ResultsController < ApplicationController
   def admin!
   unless current_user.admin?
     redirect_to tests_path,
-      flash: { error: 'You are not allowed to edit this question.' }
+      flash: { error: 'Nie masz uprawnień do przeglądanie tej strony' }
   end
   end
 
@@ -44,7 +45,7 @@ class ResultsController < ApplicationController
   def update
     respond_to do |format|
       if @result.update(result_params)
-        format.html { redirect_to test_results_path(:id =>test.id), notice: 'Result was successfully updated.' }
+        format.html { redirect_to test_results_path(:id =>test.id), notice: 'Wynik został pomyślnie aktualizowany' }
         format.json { render :show, status: :ok, location: @result }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class ResultsController < ApplicationController
   def destroy
     @result.destroy
     respond_to do |format|
-      format.html { redirect_to test_results_path(:id =>test.id), notice: 'Result was successfully destroyed.' }
+      format.html { redirect_to test_results_path(:id =>test.id), notice: 'Wynik został pomyślnie usunięty' }
       format.json { head :no_content }
     end
   end

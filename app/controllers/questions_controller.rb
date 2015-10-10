@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
     question.query = @sql
     if question.save
     test.questions << question
-    redirect_to test_path(params[:test_id]), notice: 'Zadanie zostało dodane'
+    redirect_to test_path(params[:test_id]), notice: 'Zadanie zostało pomyślnie dodane'
     else
     render action: 'new'
     end
@@ -103,7 +103,7 @@ elsif @button == 'save'
   question = Question.find(params[:id])
   parametry=Hash["test_id"=>params[:test_id],"content"=>@content, "query" =>@sql]
   question.update(parametry)
-  redirect_to test_path(params[:test_id]), notice: 'zadanie zostało pomyślne zmienione.'
+  redirect_to test_path(params[:test_id]), notice: 'Zadanie zostało pomyślne zmienione.'
 
  else
    redirect_to new_user_session_url
@@ -117,7 +117,7 @@ end
   def destroy
     if user_signed_in?
     question.destroy
-   redirect_to test_path(params[:test_id]), notice: 'Question was successfully destroyed.'
+   redirect_to test_path(params[:test_id]), notice: 'Zadanie zostało pomyślnie usunięte.'
 
 else
 redirect_to new_user_session_url
