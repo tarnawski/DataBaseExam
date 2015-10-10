@@ -1,0 +1,11 @@
+class AddAttachmentAvatarToDatabases < ActiveRecord::Migration
+  def self.up
+    change_table :databases do |t|
+      t.attachment :avatar
+    end
+  end
+
+  def self.down
+    remove_attachment :databases, :avatar
+  end
+end

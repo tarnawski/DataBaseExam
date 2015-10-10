@@ -1,0 +1,11 @@
+class AddAttachmentImageToDatabases < ActiveRecord::Migration
+  def self.up
+    change_table :databases do |t|
+      t.attachment :image
+    end
+  end
+
+  def self.down
+    remove_attachment :databases, :image
+  end
+end
