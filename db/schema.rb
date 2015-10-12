@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20151013033143) do
     t.string   "username"
     t.string   "password"
     t.string   "database"
-    t.string   "image_path"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
