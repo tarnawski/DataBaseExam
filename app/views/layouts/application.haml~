@@ -16,7 +16,7 @@
           %span.navbar-brand
             DBExam
         %ul.nav.navbar-nav
-          -if user_signed_in?
+          -if current_user.try(:admin)
             %li.dropdown
               %a{:href=>"#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown"}Testy<b class="caret"></b>
               %ul.dropdown-menu
@@ -35,6 +35,9 @@
                   %a{:href => "/databases/new"} Dodaj połączenie
             %li
               %a{:href => "/sqlbox/index"} SQLBox	 
+            -if current_user.super_admin == true
+              %li
+                Is Super Admin    
 
         %p.nav.navbar-brand.navbar-right
           %ul.nav.navbar-nav.navbar-right

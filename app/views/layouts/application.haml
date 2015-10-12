@@ -35,6 +35,9 @@
                   %a{:href => "/databases/new"} Dodaj połączenie
             %li
               %a{:href => "/sqlbox/index"} SQLBox	 
+            -if current_user.super_admin == true
+              %li
+                %a{:href => "/teacher/index"} Zarządzaj użytkownikami    
 
         %p.nav.navbar-brand.navbar-right
           %ul.nav.navbar-nav.navbar-right

@@ -2,6 +2,24 @@
 
 
 #####################################################################################################
+#SuperAdmin
+user = User.new
+user.email = 'superadmin@example.com'
+user.encrypted_password = 'xxxxxxx'
+user.password = 'valid_password'
+user.password_confirmation = 'valid_password'
+user.current_sign_in_at = '2015-02-27 20:29:27.899831'
+user.last_sign_in_at = '2015-02-26 20:29:27.899831'
+user.current_sign_in_ip = '192.168.0.0'
+user.last_sign_in_ip = '192.168.0.0'
+user.created_at = '2015-02-26 20:29:27.899831'
+user.updated_at = '2015-02-26 20:29:27.899831'
+user.firstname = 'Super'
+user.lastname = 'Admin'
+user.admin = 'TRUE'
+user.super_admin = 'TRUE'
+user.save!
+
 #Admin
 user = User.new
 user.email = 'admin@example.com'

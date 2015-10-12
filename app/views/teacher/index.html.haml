@@ -1,0 +1,41 @@
+- if notice
+  %div.alert.alert-info
+    %p#notice= notice
+
+<div class="row">
+<div class="col-lg-5">
+<h1>Prowadzący:</h1>
+%table.table
+  %thead
+    %tr
+      %th Imię i nazwisko
+      %th
+      %th
+
+  %tbody
+    - @teaches.each do |teach|
+      %tr
+        %td= teach.firstname+ ' ' + teach.lastname
+        %td= link_to 'Usuń uprawnienia', {:action => "downgrade", :id =>teach.id}, class: 'btn btn-danger btn-xs'
+</div>
+<div class="col-lg-7">
+<h1>Pozostali użytkownicy:</h1>
+%table.table
+  %thead
+    %tr
+      %th Imię i nazwisko
+      %th Email
+      %th 
+      %th
+  %tbody
+    - @others.each do |other|
+      %tr
+        %td= other.firstname+ ' ' + other.lastname
+        %td= other.email
+        %td= link_to 'Dodaj uprawnienia', {:action => "promote", :id =>other.id}, class: 'btn btn-primary btn-xs'
+
+</div>
+</div>
+
+
+

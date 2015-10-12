@@ -52,7 +52,7 @@ end
 ######################################################################################################
 question_list = [
   [ 1, "Wypisz nazwe oraz adres wszystkich klientów", "select nazwa, adres from klienci"],
-  [ 1, "Wypisz liczne klientów", "select count(*) from klienci"],
+  [ 1, "Wypisz liczbe klientów", "select count(*) from klienci"],
   [ 1, "W tabeli ceny zmień cene cennikową na 20.5 dla produktu o id 100871", "update ceny set cena_cennikowa=20.5 where id_produktu=100871"]
 ]
 
