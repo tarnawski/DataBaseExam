@@ -9,8 +9,7 @@ class TestsController < ApplicationController
     expose(:result) { Result.new }
 
   def admin!
-
-  unless current_user
+  unless current_user.admin?
     redirect_to tests_path,
       flash: { error: 'You are not allowed to edit this product.' }
   end
@@ -56,6 +55,11 @@ class TestsController < ApplicationController
   # GET /tests.json
   def index
     @tests = Test.all
+  end
+
+  # GET /tests/me
+  def me
+    @tests = Test.where(user.id: current_user.id)
   end
 
   # GET /tests/1

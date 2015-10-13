@@ -33,7 +33,7 @@ end
   # Example of regular route:
      get 'tests/:id/prepare' => 'tests#prepare_test'
      get 'answers/prepare' => 'answers#prepare'
-
+     get 'mytest' => 'tests#me'
 
 
 end

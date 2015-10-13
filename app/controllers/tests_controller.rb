@@ -57,6 +57,11 @@ class TestsController < ApplicationController
     @tests = Test.all
   end
 
+  # GET /tests/me
+  def me
+    @tests = Test.where(user_id: current_user.id)
+  end
+
   # GET /tests/1
   # GET /tests/1.json
   def show

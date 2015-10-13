@@ -16,14 +16,14 @@
           %span.navbar-brand
             DBExam
         %ul.nav.navbar-nav
-          -if user_signed_in?
+          -if current_user.try(:admin)
             %li.dropdown
               %a{:href=>"#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown"}Testy<b class="caret"></b>
               %ul.dropdown-menu
                 %li
                   %a{:href => "/tests"} Wszystkie testy
                 %li
-                  %a{:href => "/tests"} Moje testy
+                  %a{:href => "/mytest"} Moje testy
                 %li
                   %a{:href => "/tests/new"} Dodaj test
             %li.dropdown
