@@ -38,7 +38,7 @@ class DatabasesController < ApplicationController
   # PATCH/PUT /databases/1
   def update
     if @database.update(database_params)
-      redirect_to @database, notice: 'Dane połączenia zastały aktualizowane.' 
+      redirect_to databases_url, notice: 'Dane połączenia zastały aktualizowane.' 
     else
       render :edit 
     end

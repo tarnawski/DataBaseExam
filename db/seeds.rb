@@ -81,10 +81,10 @@ end
 ######################################################################################################
 
 database_list = [
-  [ "Baza testowa", "Testowa baza danych", "postgresql", "unicode", "localhost", 5, "postgres", "tarnawski", "test", "http://140dev.com/tutorial_images/twitter_database.png" ],
+  [ "Baza testowa", "Testowa baza danych", "postgresql", "unicode", "localhost", 5, "postgres", "tarnawski", "test" ],
 
 ]
 
 database_list.each do |name, comment, adapter, encoding, host, pool,   username, password, database, image_path|
-  Database.create( name: name, comment: comment, adapter: adapter, encoding: encoding, host: host, pool: pool, username: username, password: password, database: database, image_path: image_path )
+  Database.create( name: name, comment: comment, adapter: adapter, encoding: encoding, host: host, pool: pool, username: username, password: password, database: database)
 end

@@ -12,9 +12,10 @@
   .field
     = f.label :Komentarz
     = f.text_area :comment, class: 'form-control'
+  <br>
   .field
     = f.label :Adapter
-    = f.text_field :adapter, class: 'form-control'
+    = f.select :adapter, ['mysql2', 'postgresql']
   .field
     = f.label :Kodowanie
     = f.text_field :encoding, class: 'form-control'

@@ -96,25 +96,26 @@ class AnswersController < ApplicationController
     
     #Przekazanie ilości pytań na które nie udzielono odpowiedzi
     @not_checked = Answer.where(answer:'',student_id: current_user.id).count
+    if @answer.answer != ''
+      #Wczytanie bierzącej odpowiedzi
+      @sql = @answer.answer
     
-    #Wczytanie bierzącej odpowiedzi
-    @sql = @answer.answer
-    
-    if @sql =~/rollback/i || @sql =~/commit/i  || @sql =~/savepoint/i 
-      redirect_to tests_path, notice: 'Test zakończony. Zarejestrowano próbe ataku SQL Injection ' 
-    end
-
-    if @sql =~/create/i || @sql =~/insert/i  || @sql =~/update/i  || @sql =~/delete/i 
-      begin
-        @zmienna=TestDataBase.answer_sql(@sql)
-      rescue ActiveRecord::StatementInvalid => exception
-        @err = exception.message
+      if @sql =~/rollback/i || @sql =~/commit/i  || @sql =~/savepoint/i 
+        redirect_to tests_path, notice: 'Test zakończony. Zarejestrowano próbe ataku SQL Injection ' 
       end
-    elsif
-      begin
-        @zmienna=TestDataBase.connection.exec_query (@sql)
-      rescue ActiveRecord::StatementInvalid => exception
-	@err = exception.message
+
+      if @sql =~/create/i || @sql =~/insert/i  || @sql =~/update/i  || @sql =~/delete/i 
+        begin
+          @zmienna=TestDataBase.answer_sql(@sql)
+        rescue ActiveRecord::StatementInvalid => exception
+          @err = exception.message
+        end
+      elsif
+        begin
+          @zmienna=TestDataBase.connection.exec_query (@sql)
+        rescue ActiveRecord::StatementInvalid => exception
+	  @err = exception.message
+        end
       end
     end
   end
