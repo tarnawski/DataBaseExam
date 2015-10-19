@@ -53,9 +53,11 @@
                     = link_to('Wyloguj', destroy_user_session_path,  :method=>'delete')
 
             -else
-              = link_to('Zaloguj się', new_user_session_path)
-              or 
-              = link_to('Zarejestruj się ', new_user_registration_path)
+              %li
+                %a{:href => new_user_session_path} Zaloguj się
+              %li
+                %a{:href => new_user_registration_path} Zarejestruj się
+
              
           
     .container-fluid

@@ -12,10 +12,6 @@
       <th>Liczba pytań</th>
       <th>Losowość</th>
       <th>Baza</th>
-      <th>Standardowe ocenianie</th>
-      <th>Bdb</th>
-      <th>Bd</th>
-      <th>Dost</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,10 +32,6 @@
 
         <td><%= test.random %></td>
         <td>  <%= Database.find(test.database).name %></td>
-        <td><%= test.standard_score %></td>
-        <td><%= test.bdb %></td>
-        <td><%= test.bd %></td>
-        <td><%= test.dost %></td>
         <%if current_user.admin? %>
         <td><%= link_to 'Pokaż', test, class: 'btn btn-success btn-xs' %></td>
         <td><%= link_to 'Edytuj', edit_test_path(test), class: 'btn btn-warning btn-xs' %></td>
