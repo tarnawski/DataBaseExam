@@ -4,31 +4,31 @@ RSpec.describe ResultsController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/results").to route_to("results#index")
+      expect(:get => "/tests/1/results").to route_to("results#index", :test_id => "1")
     end
 
     it "routes to #new" do
-      expect(:get => "/results/new").to route_to("results#new")
+      expect(:get => "/tests/1/results/new").to route_to("results#new", :test_id => "1")
     end
 
     it "routes to #show" do
-      expect(:get => "/results/1").to route_to("results#show", :id => "1")
+      expect(:get => "/tests/1/results/1").to route_to("results#show", :test_id => "1", :id => "1")
     end
 
     it "routes to #edit" do
-      expect(:get => "/results/1/edit").to route_to("results#edit", :id => "1")
+      expect(:get => "/tests/1/results/1/edit").to route_to("results#edit", :test_id => "1", :id => "1")
     end
 
     it "routes to #create" do
-      expect(:post => "/results").to route_to("results#create")
+      expect(:post => "/tests/1/results").to route_to("results#create", :test_id => "1")
     end
 
     it "routes to #update" do
-      expect(:put => "/results/1").to route_to("results#update", :id => "1")
+      expect(:put => "/tests/1/results/1").to route_to("results#update", :test_id => "1", :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/results/1").to route_to("results#destroy", :id => "1")
+      expect(:delete => "/tests/1/results/1").to route_to("results#destroy", :test_id => "1", :id => "1")
     end
 
   end

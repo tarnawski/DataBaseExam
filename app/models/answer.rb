@@ -94,12 +94,12 @@ belongs_to :student
     else
       if points>=current_test.bdb
         return 5;
-      elsif points>=current_test.bd+(current_test.bdb-current_test.bd)
+      elsif points>=(current_test.bd+((current_test.bdb-current_test.bd)/2))
         return 4.5;
       elsif points>=current_test.bd
         return 4;
-      elsif points>=current_test.dost+(current_test.current_test.dost)
-        return 4.5;
+      elsif points>=(current_test.dost+((current_test.bd-current_test.dost)/2))
+        return 3.5;
       elsif points>=current_test.dost
         return 3;
       elsif points<current_test.dost

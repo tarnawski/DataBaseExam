@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   devise_for :models
 
   get 'tests/:id/prepare' => 'tests#prepare_test'
-  get 'answers/prepare' => 'answers#prepare'
   get 'mytest' => 'tests#me'
   
 

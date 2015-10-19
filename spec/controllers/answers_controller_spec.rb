@@ -32,15 +32,6 @@ RSpec.describe AnswersController, type: :controller do
         expect(response).to redirect_to(tests_path)
       end
     end
-
-    describe 'GET edit' do
-      it 'redirects user to the login page' do
-        session[:tab]=[1]
-	answer = Answer.create!(:id=>1, :student_id=>1, :question_id=>1, :answer=>"Wypisz ceny")
-        get :edit, { id: answer.to_param }, valid_session
-        expect(response).to redirect_to(tests_path)
-      end
-    end
    
     describe 'PUT update' do
       it 'redirect user to the login page' do
