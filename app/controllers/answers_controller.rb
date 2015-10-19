@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update]
   before_action :authenticate_user!, only: [:index, :new, :show, :edit, :update]
-  before_action :acces!, only: [:index, :new, :show, :edit, :update, :prepare]
+  before_action :acces!, only: [:index, :new, :show, :edit, :update]
 
   expose(:student)
   expose(:answers)
@@ -23,49 +23,9 @@ class AnswersController < ApplicationController
 
   def index
     @all_answers = Answer.where(student_id: current_user.id).order("id")
-    @points =0;
-    @all_answers.each do |answer|
-      if answer.answer!=''
-        if answer.answer =~/cerate/i  || answer.answer =~/insert/i  || answer.answer =~/update/i || answer.answer =~/delete/i 
-          begin
-            zm1=TestDataBase.answer_sql(answer.answer)
-            @zm1=zm1.to_hash
-          rescue 
-            @zm1="null"
-          end
-        elsif
-          begin
-            zm1=TestDataBase.connection.exec_query (answer.answer)
-            @zm1=zm1.to_hash
-          rescue 
-            @zm1="null"
-          end
-        end
-
-        correct_query = Question.find(answer.question_id).query
-        if correct_query =~/create/i  || correct_query =~/insert/i  || correct_query =~/update/i  || correct_query =~/delete/i 
-          begin
-            zm1=TestDataBase.answer_sql(correct_query)
-            @zm2=zm1.to_hash
-          rescue 
-            @zm2="null"
-          end
-        elsif
-          begin
-            zm1=TestDataBase.connection.exec_query (correct_query)
-            @zm2=zm1.to_hash
-          rescue 
-            @zm2="null"
-          end
-        end
-
-          if (!@zm1.empty? && !@zm2.empty?)
-            if(@zm1==@zm2)
-              @points = @points+1
-            end
-          end
-      end  
-    end
+    
+    #Wywołanie funkcji wyznaczającej punkty
+    @points = Answer.checkAnswer(@all_answers)
 
     #Wywołanie funkcji wyznaczającej ocene
     @mark = Answer.mark(@current_test.id,@points)
@@ -83,9 +43,6 @@ class AnswersController < ApplicationController
     results.save
   end
 
-  def edit
- 
-  end
 
 
   def show
@@ -96,72 +53,42 @@ class AnswersController < ApplicationController
     
     #Przekazanie ilości pytań na które nie udzielono odpowiedzi
     @not_checked = Answer.where(answer:'',student_id: current_user.id).count
-    if @answer.answer != ''
-      #Wczytanie bierzącej odpowiedzi
-      @sql = @answer.answer
     
-      if @sql =~/rollback/i || @sql =~/commit/i  || @sql =~/savepoint/i 
-        redirect_to tests_path, notice: 'Test zakończony. Zarejestrowano próbe ataku SQL Injection ' 
+    #Wczytanie bierzącej odpowiedzi
+    @sql = @answer.answer
+    
+    if @sql =~/rollback/i || @sql =~/commit/i  || @sql =~/savepoint/i 
+      redirect_to tests_path, notice: 'Test zakończony. Zarejestrowano próbe ataku SQL Injection ' 
+    end
+
+    if @sql =~/create/i || @sql =~/insert/i  || @sql =~/update/i  || @sql =~/delete/i 
+      begin
+        @zmienna=TestDataBase.answer_sql(@sql)
+      rescue ActiveRecord::StatementInvalid => exception
+        @err = exception.message
       end
-
-      if @sql =~/create/i || @sql =~/insert/i  || @sql =~/update/i  || @sql =~/delete/i 
-        begin
-          @zmienna=TestDataBase.answer_sql(@sql)
-        rescue ActiveRecord::StatementInvalid => exception
-          @err = exception.message
-        end
-      elsif
-        begin
-          @zmienna=TestDataBase.connection.exec_query (@sql)
-        rescue ActiveRecord::StatementInvalid => exception
-	  @err = exception.message
-        end
+    elsif
+      begin
+        @zmienna=TestDataBase.connection.exec_query (@sql)
+      rescue ActiveRecord::StatementInvalid => exception
+	@err = exception.message
       end
     end
   end
 
-  #Przygotowanie tabeli Answers w bazie danych na przyjęcie odpowiedzi od użytkownika
-  def prepare
 
-    #Usunięcie z tabeli poprzednich odpowiedzi zalogowanego użytkownika
-    @to_destroy= Answer.where(student_id: current_user.id).all
-    @to_destroy.each do |to_destroy|
-    to_destroy.destroy
-    end
-
-    #Przygotowanie tabeli Answers
-
-    @get_session.each do |tab|
-    @answer = Answer.new()
-    @quest = Question.find(tab)
-    @answer.question_id = @quest.id
-    @answer.student_id = current_user.id
-    @answer.answer = ''
-    @answer.save
-    end
-
-    #Wywołanie funkcji odpowiednio przygotowującej połączenie z bazą danych 
-    TestDataBase.prepare_connection(@current_test.database)
+  #Wywołanie funkcji przygotowującej tabele Answers na odpowiedzi oraz przekierowanie do pierwszego pytania
+  def new
+    Answer.prepare(@get_session, @current_test, current_user)
+    redirect_to answer_path(Answer.where(student_id: current_user.id).first.id)
   end
 
-#Wywołanie funkcji przygotowującej tabele Answers na odpowiedzi oraz przekierowanie do pierwszego pytania
-def new
-prepare
-redirect_to answer_path(Answer.where(student_id: current_user.id).first.id)
-end
-
-
-  def create
-  end
+ 
 
   def update
-
    @answer.update(answer_params)
-       
    redirect_to answer_path
   end
-
-
 
   private
 

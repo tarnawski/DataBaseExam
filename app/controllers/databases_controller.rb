@@ -32,13 +32,17 @@ class DatabasesController < ApplicationController
 
   def create
     @database = Database.create(database_params)
-    redirect_to databases_url, notice: 'Dane połączenia zastały zapisane.' 
+    if @database.save
+       redirect_to databases_url, notice: 'Dane połączenia zastały zapisane.' 
+    else
+        render :new
+    end
   end
 
   # PATCH/PUT /databases/1
   def update
     if @database.update(database_params)
-      redirect_to databases_url, notice: 'Dane połączenia zastały aktualizowane.' 
+      redirect_to @database, notice: 'Dane połączenia zastały aktualizowane.' 
     else
       render :edit 
     end

@@ -1,6 +1,75 @@
 class Answer < ActiveRecord::Base
 belongs_to :student
 
+  def self.checkAnswer(all_answers)
+  points = 0
+  all_answers.each do |answer|
+      if answer.answer!=''
+        if answer.answer =~/cerate/i  || answer.answer =~/insert/i  || answer.answer =~/update/i || answer.answer =~/delete/i 
+          begin
+            zm1=TestDataBase.answer_sql(answer.answer)
+            @zm1=zm1.to_hash
+          rescue 
+            @zm1="null"
+          end
+        elsif
+          begin
+            zm1=TestDataBase.connection.exec_query (answer.answer)
+            @zm1=zm1.to_hash
+          rescue 
+            @zm1="null"
+          end
+        end
+
+        correct_query = Question.find(answer.question_id).query
+        if correct_query =~/create/i  || correct_query =~/insert/i  || correct_query =~/update/i  || correct_query =~/delete/i 
+          begin
+            zm1=TestDataBase.answer_sql(correct_query)
+            @zm2=zm1.to_hash
+          rescue 
+            @zm2="null"
+          end
+        elsif
+          begin
+            zm1=TestDataBase.connection.exec_query (correct_query)
+            @zm2=zm1.to_hash
+          rescue 
+            @zm2="null"
+          end
+        end
+
+          if (!@zm1.empty? && !@zm2.empty?)
+            if(@zm1==@zm2)
+              points = points+1
+            end
+          end
+        end
+    end
+    return points
+  end
+
+  def self.prepare(get_session, current_test, current_user)
+    #Usunięcie z tabeli poprzednich odpowiedzi zalogowanego użytkownika
+    @to_destroy= Answer.where(student_id: current_user.id).all
+    @to_destroy.each do |to_destroy|
+      to_destroy.destroy
+    end
+
+    #Przygotowanie tabeli Answers
+    get_session.each do |tab|
+      answer = Answer.new()
+      quest = Question.find(tab)
+      answer.question_id = quest.id
+      answer.student_id = current_user.id
+      answer.answer = ''
+      answer.save
+    end
+
+    #Wywołanie funkcji odpowiednio przygotowującej połączenie z bazą danych 
+    TestDataBase.prepare_connection(current_test.database)
+  end
+
+
   def self.mark(test_id, points)
     current_test = Test.find(test_id)
     if current_test.standard_score

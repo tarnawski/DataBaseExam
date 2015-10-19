@@ -1,14 +1,21 @@
 <p id="notice"><%= notice %></p>
+<center>
+<div class="alert alert-success">
+<h1>
+Twoje odpowiedzi zostały zapisane i przekazane prowadzącemu zajęcia.
 
-<h1>Your results...</h1>
 
+</div>
+<br><br><br><br>
+
+</h1>
 
 <br>
-<h2>Points: <%= @points %>  
+<h2>Uzyskana liczba punktów: <%= @points %>  
 <br>
-Your mark is: <%= @mark %>  
+Twoja ocena: <%= @mark %>  
 
 </h2>
-
-<%=link_to 'Back', tests_path %>
-
+<br><br>
+<%=link_to 'Wróć do listy testów', tests_path, class: "btn btn-primary"%>
+</center>

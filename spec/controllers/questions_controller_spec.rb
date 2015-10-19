@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
+  let(:user) { build(:user) }  
   let(:test)      { create(:test) }
   let(:valid_attributes) do
     {
@@ -10,31 +11,6 @@ RSpec.describe QuestionsController, type: :controller do
     }
   end
 
-
-  context 'user is not singed in' do
-
-
-   describe 'GET index' do
-        it 'redirects user to login page' do
-          get :index, { test_id: test.to_param }
-          expect(response).to redirect_to(new_user_session_path)
-        end
-     end
-  
-
-   describe 'GET show' do
-        it 'redirects user to login page' do
-          get :show, {id: valid_attributes, test_id: test.to_param }
-          expect(response).to redirect_to(new_user_session_path)
-        end
-     end
-   end
-
-
-  context 'user is not singed in but not admin' do
-
-  let(:user) { build(:user) }
-
   before do
     sign_in user
     controller.stub(:user_signed_in?).and_return(true)
@@ -42,37 +18,30 @@ RSpec.describe QuestionsController, type: :controller do
     controller.stub(:authenticate_user!).and_return(user)
   end
 
-   
 
-   describe 'GET index' do
-        it 'redirects user to test list' do
-          get :index, { test_id: test.to_param }
-          expect(response).to redirect_to(tests_path)
-        end
-     end
-  
-
-   describe 'GET show' do
-        it 'redirects user to test list' do
-          get :show, {id: valid_attributes, test_id: test.to_param }
-          expect(response).to redirect_to(tests_path)
-        end
-     end
-  end
-  
-
- context 'user is an admin' do
+  context 'user is not admin' do
     before do
-      controller.current_user.stub(admin?: true)
+      controller.current_user.stub(admin?: false)
     end
 
-  describe 'GET show' do
-    it 'expose the requested question' do
-      question = Question.create! valid_attributes
-      get :show, { id: question.to_param, test_id: question.to_param }
-      expect(controller.question).to eq(question)
+    describe 'GET show' do
+        it 'redirects user to test path' do
+          get :new, {id: valid_attributes, test_id: test.to_param }
+          expect(response).to redirect_to(tests_path)
+        end
     end
-  end
+    describe 'GET edit' do
+        it 'redirects user to test path' do
+          get :edit, {id: valid_attributes, test_id: test.to_param }
+          expect(response).to redirect_to(tests_path)
+        end
+    end
 
-end
+    describe 'GET destroy' do
+        it 'redirects user to test path' do
+          delete :destroy, {id: valid_attributes, test_id: test.to_param }
+          expect(response).to redirect_to(tests_path)
+        end
+    end
+  end  
 end

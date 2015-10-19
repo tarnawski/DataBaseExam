@@ -2,7 +2,14 @@ require 'rails_helper'
 
 
 RSpec.describe DatabasesController, type: :controller do
-
+  let(:user) { build(:user) } 
+ before do
+    sign_in user
+    controller.stub(:user_signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(user)
+    controller.stub(:authenticate_user!).and_return(user)
+    controller.current_user.stub(admin?: true)
+  end
 
   let(:valid_attributes) do
     {
@@ -39,13 +46,6 @@ RSpec.describe DatabasesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested database as @database" do
-      database = Database.create! valid_attributes
-      get :show, {:id => database.to_param}, valid_session
-      expect(assigns(:database)).to eq(database)
-    end
-  end
 
   describe "GET #new" do
     it "assigns a new database as @database" do
@@ -76,10 +76,7 @@ RSpec.describe DatabasesController, type: :controller do
         expect(assigns(:database)).to be_persisted
       end
 
-      it "redirects to the created database" do
-        post :create, {:database => valid_attributes}, valid_session
-        expect(response).to redirect_to(Database.last)
-      end
+      
     end
 
     context "with invalid params" do
@@ -100,7 +97,6 @@ RSpec.describe DatabasesController, type: :controller do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
       }
-
 
       it "assigns the requested database as @database" do
         database = Database.create! valid_attributes
