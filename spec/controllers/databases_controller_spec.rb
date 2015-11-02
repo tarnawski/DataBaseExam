@@ -107,7 +107,7 @@ RSpec.describe DatabasesController, type: :controller do
       it "redirects to the database" do
         database = Database.create! valid_attributes
         put :update, {:id => database.to_param, :database => valid_attributes}, valid_session
-        expect(response).to redirect_to(database)
+        expect(response).to redirect_to(databases_url)
       end
     end
 

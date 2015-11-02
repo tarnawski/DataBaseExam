@@ -60,6 +60,7 @@ belongs_to :student
       answer = Answer.new()
       quest = Question.find(tab)
       answer.question_id = quest.id
+      answer.test_id = current_test.id
       answer.student_id = current_user.id
       answer.answer = ''
       answer.save
@@ -131,13 +132,13 @@ class TestDataBase < Answer
       connection.schema_cache.clear! 
       reset_column_information
       query_in_tab = query.split(" ")
-      if query_in_tab[0] == "insert" 
+      if query_in_tab[0] =~/insert/i
         @table = query_in_tab[2]
-      elsif query_in_tab[0] == "update" 
+      elsif query_in_tab[0] =~/update/i 
         @table = query_in_tab[1]
-      elsif query_in_tab[0] == "delete" 
+      elsif query_in_tab[0] =~/delete/i 
         @table = query_in_tab[2]
-      elsif query_in_tab[0] == "create" 
+      elsif query_in_tab[0] =~/create/i 
         @table = query_in_tab[2]
       end
 

@@ -13,28 +13,29 @@ class ResultsController < ApplicationController
   end
   end
 
-  # GET /results
-  # GET /results.json
   def index
     @results = Result.where(test_id: params[:test_id])
   end
 
-  # GET /results/1
-  # GET /results/1.json
-  def show
-  @student=params[:student]
-  @answers=Answer.where(student_id: @student); 
+  def raport
+    @test = Test.find(params[:test_id])
+    @results = Result.where(test_id: params[:test_id])
+    
+    render layout: false 
+
   end
 
-  # GET /results/new
+  def show
+    @student=params[:student]
+    @answers=Answer.where(student_id: params[:student], test_id: params[:test_id]); 
+  end
+
   def new
     @result = Result.new
   end
 
-  # GET /results/1/edit
   def edit
   end
-
 
   def create
    

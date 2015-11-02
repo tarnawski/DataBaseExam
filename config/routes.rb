@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get 'tests/:id/prepare' => 'tests#prepare_test'
   get 'mytest' => 'tests#me'
+  get 'tests/:test_id/raport' => 'results#raport'
   
 
 end

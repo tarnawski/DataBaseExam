@@ -14,6 +14,7 @@ gem 'mysql2', '~> 0.3.11'
 gem 'ar-octopus'
 gem 'database_cleaner'
 gem 'mongoid-rspec', '3.0.0'
+gem 'xml_active', '~> 0.0.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
