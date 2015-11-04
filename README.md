@@ -24,7 +24,7 @@ Instalacja aplikacji DBExam
 8. Uruchom serwer rails poleceniem 'rails s'
 9. Otwórz swój localhost wpisując w przeglądarce w pole adresu: 'localhost:3000'
 10. Gotowe! Teraz możesz zalogować się na konto administratora:
-	Login: superadmin
+	Login: superadmin@exampl.com
 	Hasło: valid_password
 11. W menu wybierz opcję Dazy Danych->Dodaj połączenie i wypełnij informacje o bazie stworzonej w punkcie 7
 12. Do uruchomienia testów wykorzystaj komendę 'rspec spec' 
