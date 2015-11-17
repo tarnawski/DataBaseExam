@@ -31,4 +31,5 @@
 = link_to 'Wróć', tests_path , class: 'btn btn-primary'
 - if @results.count !=0
   = link_to 'Pokaż raport XML', {:action => "raport", :test_id => params[:test_id]}, target: '_blank', class: 'btn btn-primary'
+  = link_to 'Pobierz widok PDF', {:action => "raportpdf", :test_id => params[:test_id]}, class: 'btn btn-primary'
 

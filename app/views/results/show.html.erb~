@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
  <div class="row">
 <div class="col-lg-2">
-<h3>Details</h3>
+<h3>Szczegóły</h3>
 <b>Student:</b><br>
 <%= User.find(@student).firstname + ' ' + User.find(test.user_id).lastname %>
 <br><br>
-<b>Poinst: </b>
+<b>Punkty: </b>
 <%=@result.points%><br><br>
-<b>Mark: </b>
+<b>Ocena: </b>
 <%=@result.mark%><br>
 <br><br>
-<%=link_to 'Back', test_results_path(:id =>test.id), class: 'btn btn-primary'%>
+<%=link_to 'Wróć', test_results_path(:id =>test.id), class: 'btn btn-primary'%>
+  <%= link_to 'Pobierz widok PDF', {:action => "pdfdetails", :test_id => params[:test_id], :student => result.student_id}, class: 'btn btn-primary'%>
 </div>
 <div class="col-lg-10">
-<h3>Listing Questions</h3>
+<h3>Lista odpowiedzi</h3>
 
 
 <table class="table">

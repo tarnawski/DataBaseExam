@@ -1,0 +1,22 @@
+%h1 
+  Wyniki testu: 
+  = @test.name
+
+%table.table
+  %thead
+    %tr
+      %th Student
+      %th Punkty
+      %th Ocena
+      %th Data
+
+  %tbody
+    - @results.each do |result|
+      %tr
+        %td= User.find(result.student_id).firstname+ ' ' + User.find(result.student_id).lastname
+        %td= result.points
+        %td= result.mark
+        %td= result.created_at
+
+
+

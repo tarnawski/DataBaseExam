@@ -22,10 +22,14 @@
         %td= result.mark
         %td= result.created_at
 
-        %td= link_to 'Pokaż', test_result_path(result.test_id, result, :student => result.student_id)
-        %td= link_to 'Edytuj', edit_test_result_path(result.test_id, result)
-        %td= link_to 'Usuń', test_result_path(result.test_id, result), :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Pokaż', test_result_path(result.test_id, result, :student => result.student_id), class: 'btn btn-success btn-xs'
+        %td= link_to 'Edytuj', edit_test_result_path(result.test_id, result), class: 'btn btn-warning btn-xs'
+        %td= link_to 'Usuń', test_result_path(result.test_id, result), :method => :delete, :data => { :confirm => 'Czy napewno chcesz usunąć wynik?' }, class: 'btn btn-danger btn-xs'
         
 %br
 
 = link_to 'Wróć', tests_path , class: 'btn btn-primary'
+- if @results.count !=0
+  = link_to 'Pokaż raport XML', {:action => "raport", :test_id => params[:test_id]}, target: '_blank', class: 'btn btn-primary'
+  = link_to 'Pobierz widok PDF', {:action => "raportpdf", :test_id => params[:test_id]}, target: '_blank', class: 'btn btn-primary'
+

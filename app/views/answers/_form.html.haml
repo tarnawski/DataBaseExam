@@ -7,7 +7,7 @@
           %li= msg
 
   .form-group
-    = f.label :answer
+    = f.label Question.find(answer.question_id).content
     = f.text_area :answer, class: 'form-control'
   
   = f.submit 'Wykonaj', class: 'btn btn-primary'

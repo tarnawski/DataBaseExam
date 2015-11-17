@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'teacher/index'
+  get 'teacher/:id/promote' => 'teacher#promote'
+  get 'teacher/:id/downgrade' => 'teacher#downgrade'
+
   root 'tests#index'
 
   get 'sqlbox/index'
-  get 'teacher/index'
 
   resources :databases
   
@@ -17,8 +20,9 @@ Rails.application.routes.draw do
   devise_for :models
 
   get 'tests/:id/prepare' => 'tests#prepare_test'
-  get 'answers/prepare' => 'answers#prepare'
   get 'mytest' => 'tests#me'
+  get 'tests/:test_id/raport' => 'results#raport'
+  get 'tests/:test_id/raportpdf' => 'results#raportpdf'
   
 
 end

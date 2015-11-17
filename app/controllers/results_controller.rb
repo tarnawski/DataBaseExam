@@ -25,6 +25,22 @@ class ResultsController < ApplicationController
 
   end
 
+  def raportpdf
+    @test = Test.find(params[:test_id])
+    @results = Result.where(test_id: params[:test_id])
+    render pdf:		'wyniki_testu',
+    disposition:        'attachment' 
+  end
+
+  def pdfdetails
+    @student=params[:student]
+    @answers=Answer.where(student_id: params[:student], test_id: params[:test_id])
+    @results = Result.where(test_id: params[:test_id]) 
+    render pdf:		'wyniki_testu',
+    disposition:        'attachment'
+ 
+  end
+
   def show
     @student=params[:student]
     @answers=Answer.where(student_id: params[:student], test_id: params[:test_id]); 
