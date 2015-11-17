@@ -8,9 +8,11 @@ gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '>= 3.2'
 gem 'rspec-rails', '~> 3.0'
+#For pdf raports
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 #For RSpec  
 gem "factory_girl_rails", "~> 4.0"
-gem 'mysql2', '~> 0.3.11'
 gem 'ar-octopus'
 gem 'database_cleaner'
 gem 'mongoid-rspec', '3.0.0'

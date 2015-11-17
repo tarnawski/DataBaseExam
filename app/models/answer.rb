@@ -70,6 +70,13 @@ belongs_to :student
     TestDataBase.prepare_connection(current_test.database)
   end
 
+  def self.check_connection
+      begin
+        TestDataBase.connection.exec_query("SELECT * FROM information_schema.tables")
+      rescue ActiveRecord::StatementInvalid => exception
+        exception.message
+      end
+  end
 
   def self.mark(test_id, points)
     current_test = Test.find(test_id)

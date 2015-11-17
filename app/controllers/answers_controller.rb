@@ -78,9 +78,15 @@ class AnswersController < ApplicationController
 
 
   #Wywołanie funkcji przygotowującej tabele Answers na odpowiedzi oraz przekierowanie do pierwszego pytania
-  def new
+    def new
     Answer.prepare(@get_session, @current_test, current_user)
-    redirect_to answer_path(Answer.where(student_id: current_user.id).first.id)
+
+    unless TestDataBase.check_connection.is_a? String
+      redirect_to answer_path(Answer.where(student_id: current_user.id).first.id)
+    else
+      redirect_to tests_path,
+       notice: 'Wystąpił błąd z bazą danych, sprawdź czy baza istnieje i jest poprawnie skonfigurowana' 
+    end
   end
 
  
