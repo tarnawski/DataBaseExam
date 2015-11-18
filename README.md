@@ -20,13 +20,21 @@ Instalacja aplikacji DBExam
 
 	sudo apt-get install libmagickwand-dev imagemagick
 
-7. W Celu przetestowania działania aplikacji w katalogu głównym znajduje się skrypt przykładowej bazy danych 'baza_testowa.sql' nadającej się do przeprowadzania testów, należy utworzyć nową baze a następnie uruchomić skrypt tworzący schemat.
-8. Uruchom serwer rails poleceniem 'rails s'
-9. Otwórz swój localhost wpisując w przeglądarce w pole adresu: 'localhost:3000'
-10. Gotowe! Teraz możesz zalogować się na konto administratora:
+7. Do poprpawnego generowania raportów w formaci pdf wymagany jest paniet Wkhtmltopdf, możesz go zainstalować następującymi poleceniami:
+
+	apt-get install wkhtmltopdf
+	apt-get install xvfb
+	echo 'xvfb-run --server-args="-screen 0, 1024x768x24" /usr/bin/wkhtmltopdf $*' > /usr/bin/wkhtmltopdf.sh
+	chmod a+rx /usr/bin/wkhtmltopdf.sh
+	ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
+
+8. W Celu przetestowania działania aplikacji w katalogu głównym znajduje się skrypt przykładowej bazy danych 'baza_testowa.sql' nadającej się do przeprowadzania testów, należy utworzyć nową baze a następnie uruchomić skrypt tworzący schemat.
+9. Uruchom serwer rails poleceniem 'rails s'
+10. Otwórz swój localhost wpisując w przeglądarce w pole adresu: 'localhost:3000'
+11. Gotowe! Teraz możesz zalogować się na konto administratora:
 	Login: superadmin@exampl.com
 	Hasło: valid_password
-11. W menu wybierz opcję Dazy Danych->Dodaj połączenie i wypełnij informacje o bazie stworzonej w punkcie 7
-12. Do uruchomienia testów wykorzystaj komendę 'rspec spec' 
+12. W menu wybierz opcję Dazy Danych->Dodaj połączenie i wypełnij informacje o bazie stworzonej w punkcie 7
+13. Do uruchomienia testów wykorzystaj komendę 'rspec spec' 
 
 
