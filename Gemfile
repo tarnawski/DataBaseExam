@@ -16,6 +16,7 @@ gem 'traceroute'
 gem 'brakeman', :require => false
 gem 'rubocop', require: false
 gem 'excellent'
+gem "rails_best_practices"
 #For RSpec  
 gem "factory_girl_rails", "~> 4.0"
 gem 'ar-octopus'
