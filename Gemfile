@@ -11,6 +11,11 @@ gem 'rspec-rails', '~> 3.0'
 #For pdf raports
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+# Tools to test code
+gem 'traceroute'
+gem 'brakeman', :require => false
+gem 'rubocop', require: false
+gem 'excellent'
 #For RSpec  
 gem "factory_girl_rails", "~> 4.0"
 gem 'ar-octopus'
