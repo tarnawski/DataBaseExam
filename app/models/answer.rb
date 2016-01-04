@@ -81,10 +81,11 @@ belongs_to :student
   def self.mark(test_id, points)
     current_test = Test.find(test_id)
     if current_test.standard_score
-      max=Question.where(test_id: test_id).count
-        if max>current_test.number_of_questions
+      if current_test.number_of_questions == 0
+        max=Question.where(test_id: test_id).count
+      elsif
           max=current_test.number_of_questions 
-        end
+      end
       proc=(points*100)/max
       if proc>=95
         return 5;
